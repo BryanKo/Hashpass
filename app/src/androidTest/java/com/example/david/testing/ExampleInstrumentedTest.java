@@ -1,4 +1,4 @@
-package com.bryankoproject.welp;
+package com.example.david.testing;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.bryankoproject.welp", appContext.getPackageName());
+        assertEquals("com.example.david.testing", appContext.getPackageName());
     }
 }
