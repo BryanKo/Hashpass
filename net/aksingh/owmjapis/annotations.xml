@@ -1,0 +1,6 @@
+<root>
+    <item
+        name='net.aksingh.owmjapis.OpenWeatherMap net.aksingh.owmjapis.CurrentWeather currentWeatherByCityName(java.lang.String, java.lang.String)'>
+        <annotation name='android.support.annotation.Nullable' />
+    </item>
+</root>

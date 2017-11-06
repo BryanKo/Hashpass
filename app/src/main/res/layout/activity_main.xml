@@ -10,28 +10,28 @@
         android:id="@+id/welpLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="11dp"
         android:text="Welp Recommendation App" />
 
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView_Weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/welpLogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="46dp"
         android:text="Temperature goes here " />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView7"
+        android:layout_alignBottom="@+id/textView_Weather"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="12dp"
         android:text="Button"
         tools:layout_editor_absoluteX="168dp"
         tools:layout_editor_absoluteY="32dp" />
