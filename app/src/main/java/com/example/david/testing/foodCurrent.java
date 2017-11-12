@@ -48,11 +48,11 @@ public class foodCurrent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_current);
 
-        businessName = (TextView) findViewById(R.id.tvBusinessName);
-        businessLoc = (TextView) findViewById(R.id.tvLoc);
-        businessRating = (TextView) findViewById(R.id.tvRating);
-        businessPrice = (TextView) findViewById(R.id.tvPrice);
-        businessDist = (TextView) findViewById(R.id.tvDist);
+        businessName = (TextView) findViewById(R.id.tvFoodName);
+        businessLoc = (TextView) findViewById(R.id.tvFoodLoc);
+        businessRating = (TextView) findViewById(R.id.tvFoodRating);
+        businessPrice = (TextView) findViewById(R.id.tvFoodPrice);
+        businessDist = (TextView) findViewById(R.id.tvFoodDist);
 
         apiFactory = new YelpFusionApiFactory();
         try {
@@ -61,10 +61,10 @@ public class foodCurrent extends AppCompatActivity {
 
             // Hashmap to store parameters
             Map<String, String> params = new HashMap<>();
-            params.put("term", "chinese");
+            params.put("term", "chinese food");
             //params.put("radius", "5");
             params.put("location", "santa cruz");
-            //params.put("open_now", "true");
+            params.put("open_now", "true");
 
             Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
             SearchResponse searchResponse = call.execute().body();

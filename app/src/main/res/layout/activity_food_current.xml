@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/tvBusinessName"
+        android:id="@+id/tvFoodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Business Name"
@@ -16,36 +16,36 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvLoc"
+        android:id="@+id/tvFoodLoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Location"
-        app:layout_constraintStart_toStartOf="@+id/tvBusinessName"
+        app:layout_constraintStart_toStartOf="@+id/tvFoodName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvRating"
+        android:id="@+id/tvFoodRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rating"
-        app:layout_constraintStart_toStartOf="@+id/tvLoc"
-        app:layout_constraintTop_toBottomOf="@+id/tvLoc" />
+        app:layout_constraintStart_toStartOf="@+id/tvFoodLoc"
+        app:layout_constraintTop_toBottomOf="@+id/tvFoodLoc" />
 
     <TextView
-        android:id="@+id/tvPrice"
+        android:id="@+id/tvFoodPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price"
-        app:layout_constraintStart_toStartOf="@+id/tvRating"
-        app:layout_constraintTop_toBottomOf="@+id/tvRating" />
+        app:layout_constraintStart_toStartOf="@+id/tvFoodRating"
+        app:layout_constraintTop_toBottomOf="@+id/tvFoodRating" />
 
     <TextView
-        android:id="@+id/tvDist"
+        android:id="@+id/tvFoodDist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Distance"
-        app:layout_constraintStart_toStartOf="@+id/tvPrice"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+        app:layout_constraintStart_toStartOf="@+id/tvFoodPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tvFoodPrice" />
 
 </android.support.constraint.ConstraintLayout>
