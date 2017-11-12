@@ -1,6 +1,7 @@
 package com.example.david.testing;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.provider.SearchRecentSuggestions;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,43 +33,62 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class foodCurrent extends AppCompatActivity {
-    //editviews to get user input for parameters for the yelp call
-    EditText etType;
-    EditText etLoc;
-    EditText etRadius;
-    String openNow;
+    YelpFusionApiFactory apiFactory;
+    TextView businessName, businessLoc, businessRating, businessPrice, businessDist;
+    String appId = "3v_MqsnS4xUByPuMTTjKZw";
+    String appSecret = "41AchC7qNowuPe2y2GPUnGPj4Xc25h9SRCEyuSzU7QYZKq6gzfgTUyyHpu69PohB";
+    ArrayList<Business> businesses;
+    int businessIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // StrictMode allows the api to load on main thread
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_current);
 
-        etType = (EditText) findViewById(R.id.etType);
-        etLoc = (EditText) findViewById(R.id.etLoc);
-        etRadius = (EditText) findViewById(R.id.etRadius);
-        openNow = "true";
-    }
+        businessName = (TextView) findViewById(R.id.tvBusinessName);
+        businessLoc = (TextView) findViewById(R.id.tvLoc);
+        businessRating = (TextView) findViewById(R.id.tvRating);
+        businessPrice = (TextView) findViewById(R.id.tvPrice);
+        businessDist = (TextView) findViewById(R.id.tvDist);
 
-    public void searchFood(View view) {
-        if(TextUtils.isEmpty(etType.getText().toString()) || TextUtils.isEmpty(etLoc.getText().toString()) || TextUtils.isEmpty(etRadius.getText().toString())) {
-            Toast.makeText(this, "Please fill out all parameters.", Toast.LENGTH_SHORT).show();     //if any of the edit views is left empty we pop up a toast to notify the user that they must fill all fields.
-        } else {
-            //code here fetches the user input from the appropriate fields and converts it to a string
-            String keyword = etType.getText().toString();
-            String location = etLoc.getText().toString();
-            String radius = etRadius.getText().toString();
+        apiFactory = new YelpFusionApiFactory();
+        try {
+            // Api call with client id and client secret id
+            YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
 
-            //below code transfers the user inputed variables from this activity to the main activity.
-            Intent intent = new Intent(this, foodContent.class);
-            Bundle extras = new Bundle();
-            extras.putString("keyword",keyword);
-            extras.putString("location",location);
-            extras.putString("radius",radius);
-            extras.putString("openNow", openNow);
-            intent.putExtras(extras);
-            startActivity(intent);
+            // Hashmap to store parameters
+            Map<String, String> params = new HashMap<>();
+            params.put("term", "chinese");
+            //params.put("radius", "5");
+            params.put("location", "santa cruz");
+            //params.put("open_now", "true");
+
+            Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
+            SearchResponse searchResponse = call.execute().body();
+
+            businesses = searchResponse.getBusinesses();
+
+            Business business = businesses.get(businessIndex);
+
+            businessName.setText(business.getName());
+            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
+            businessRating.setText(String.valueOf(business.getRating()));
+            businessPrice.setText(business.getPrice());
+            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
 
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 }
