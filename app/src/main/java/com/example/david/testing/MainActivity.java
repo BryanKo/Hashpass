@@ -37,33 +37,31 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView weather_print = (TextView) findViewById(R.id.textView_Weather);
 
-        final RequestBuilder weather = new RequestBuilder();
-
+        RequestBuilder weather = new RequestBuilder();
         Request request = new Request();
-        request.setLat("36.9741");
-        request.setLng("122.0308");
+        request.setLat("36.974117");
+        request.setLng("-122.030796");
         request.setUnits(Request.Units.US);
         request.setLanguage(Request.Language.ENGLISH);
         request.addExcludeBlock(Request.Block.CURRENTLY);
-
+        request.removeExcludeBlock(Request.Block.CURRENTLY);
 
         weather.getWeather(request, new Callback<WeatherResponse>() {
             String TAG = null;
-
             @Override
             public void success(WeatherResponse weatherResponse, Response response) {
-                int hello =
-                        Log.w("JSON print", new GsonBuilder().setPrettyPrinting().create().toJson(response));
-                weather_print.setText("Weather:" + hello);
+                int draft_temp = Log.d(TAG, "Temp: " + weatherResponse.getCurrently().getTemperature());
+                int draft_temp1 = Log.d(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
+                int temperature = Log.d(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
+                weather_print.setText("Current Weather in Santa Cruz: " + temperature + " °F");
             }
 
             @Override
             public void failure(RetrofitError retrofitError) {
                 Log.d(TAG, "Error while calling: " + retrofitError.getUrl());
-                weather_print.setText("absolute failure");
+                Log.d(TAG, retrofitError.toString());
             }
         });
-
 
 
         currentFood.setOnClickListener(new View.OnClickListener(){
