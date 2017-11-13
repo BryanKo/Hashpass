@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBuilder weather = new RequestBuilder();
         Request request = new Request();
-        request.setLat("36.974117");
-        request.setLng("-122.030796");
+        request.setLat("25.7617");
+        request.setLng("-80.1918");
         request.setUnits(Request.Units.US);
         request.setLanguage(Request.Language.ENGLISH);
         request.addExcludeBlock(Request.Block.CURRENTLY);
