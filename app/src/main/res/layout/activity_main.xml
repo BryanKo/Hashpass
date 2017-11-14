@@ -26,23 +26,13 @@
         android:layout_marginTop="70dp"
         android:text="Temperature goes here " />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_Weather"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="32dp" />
 
     <!--This starts the horizontal scrolling area-->
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/textView_Weather"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp">
 
