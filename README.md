@@ -8,7 +8,7 @@ under the identity of one person
 
 There are 6 branches:
 - Master
-- alee, alee2: Anthony Lee's Branch
+- alee, alee2: Anthony Lee's Branches
 - bkko: Bryan Ko's Branch
 - david: David Ip's Branch
 - desharma: Deepak Sharma's Branch.
