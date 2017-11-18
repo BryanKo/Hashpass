@@ -29,446 +29,467 @@
 
     <!--This starts the horizontal scrolling area-->
 
-    <HorizontalScrollView
+    <!--<HorizontalScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/textView_Weather"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="30dp">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal" >-->
+
+            <!--&lt;!&ndash;Vertical Scrolling current time&ndash;&gt;-->
+            <!--<ScrollView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView8"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="NOW"-->
+                        <!--android:paddingHorizontal="50dp" />-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button13"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Food"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button14"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Bars"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button15"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Active"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/button16"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Indoor"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</ScrollView>-->
+
+            <!--&lt;!&ndash;Vertical Scrolling 9am&ndash;&gt;-->
+            <!--<ScrollView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView9"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="9AM"-->
+                        <!--android:paddingHorizontal="50dp"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button17"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Food"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button18"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Bars"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button19"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Active"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/button20"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Indoor"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</ScrollView>-->
+
+            <!--&lt;!&ndash;Vertical Scrolling 10am&ndash;&gt;-->
+            <!--<ScrollView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView10"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="10AM"-->
+                        <!--android:paddingHorizontal="50dp"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button21"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Food"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button22"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Bars"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button23"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Active"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/button24"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Indoor"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</ScrollView>-->
+
+            <!--&lt;!&ndash;Vertical Scrolling 11am&ndash;&gt;-->
+            <!--<ScrollView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView11"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="11AM"-->
+                        <!--android:paddingHorizontal="50dp" />-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button25"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Food"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button26"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Bars"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button27"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Active"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/button28"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Indoor"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</ScrollView>-->
+
+            <!--&lt;!&ndash;Vertical Scrolling 12pm&ndash;&gt;-->
+            <!--<ScrollView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView12"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="12PM"-->
+                        <!--android:paddingHorizontal="50dp"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button29"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Food"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button30"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Bars"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button31"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Active"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/button32"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Indoor"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</ScrollView>-->
+
+            <!--&lt;!&ndash;Vertical Scrolling 1pm&ndash;&gt;-->
+            <!--<ScrollView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView13"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="1PM"-->
+                        <!--android:paddingHorizontal="50dp"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button33"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Food"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button34"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Bars"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button35"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Active"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/button36"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Indoor"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</ScrollView>-->
+
+            <!--&lt;!&ndash;Vertical Scrolling 2pm&ndash;&gt;-->
+            <!--<ScrollView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView14"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="2PM"-->
+                        <!--android:paddingHorizontal="50dp"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button37"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Food"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button38"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Bars"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<Button-->
+                        <!--android:id="@+id/button39"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Active"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/button40"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_marginVertical="20dp"-->
+                        <!--android:text="Indoor"-->
+                        <!--android:paddingVertical="30dp"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</ScrollView>-->
+
+        <!--</LinearLayout>-->
+    <!--</HorizontalScrollView>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/textView_Weather"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp">
+        android:layout_centerHorizontal="true" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" >
+        <!--<Button-->
+            <!--android:id="@+id/foodButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Food" />-->
 
-            <!--Vertical Scrolling current time-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <!--<Button-->
+            <!--android:id="@+id/button3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Button" />-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="NOW"
-                        android:paddingHorizontal="50dp" />
-
-                    <Button
-                        android:id="@+id/button13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Food"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Bars"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Active"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-                    <Button
-                        android:id="@+id/button16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Indoor"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <!--Vertical Scrolling 9am-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="9AM"
-                        android:paddingHorizontal="50dp"/>
-
-                    <Button
-                        android:id="@+id/button17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Food"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Bars"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Active"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-                    <Button
-                        android:id="@+id/button20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Indoor"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <!--Vertical Scrolling 10am-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="10AM"
-                        android:paddingHorizontal="50dp"/>
-
-                    <Button
-                        android:id="@+id/button21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Food"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button22"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Bars"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Active"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-                    <Button
-                        android:id="@+id/button24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Indoor"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <!--Vertical Scrolling 11am-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="11AM"
-                        android:paddingHorizontal="50dp" />
-
-                    <Button
-                        android:id="@+id/button25"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Food"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Bars"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button27"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Active"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-                    <Button
-                        android:id="@+id/button28"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Indoor"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <!--Vertical Scrolling 12pm-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="12PM"
-                        android:paddingHorizontal="50dp"/>
-
-                    <Button
-                        android:id="@+id/button29"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Food"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button30"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Bars"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button31"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Active"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-                    <Button
-                        android:id="@+id/button32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Indoor"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <!--Vertical Scrolling 1pm-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="1PM"
-                        android:paddingHorizontal="50dp"/>
-
-                    <Button
-                        android:id="@+id/button33"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Food"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button34"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Bars"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button35"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Active"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-                    <Button
-                        android:id="@+id/button36"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Indoor"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <!--Vertical Scrolling 2pm-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="2PM"
-                        android:paddingHorizontal="50dp"/>
-
-                    <Button
-                        android:id="@+id/button37"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Food"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button38"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Bars"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                    <Button
-                        android:id="@+id/button39"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Active"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-                    <Button
-                        android:id="@+id/button40"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginVertical="20dp"
-                        android:text="Indoor"
-                        android:paddingVertical="30dp"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-        </LinearLayout>
-    </HorizontalScrollView>
+    </android.support.v7.widget.RecyclerView>
 
 </android.widget.RelativeLayout>
