@@ -11,4 +11,4 @@ There are 6 branches:
 - alee, alee2: Anthony Lee's Branches
 - bkko: Bryan Ko's Branch
 - david: David Ip's Branch
-- desharma: Deepak Sharma's Branch.
+- desharma, desharma2: Deepak Sharma's Branch.
