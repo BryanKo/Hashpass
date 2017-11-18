@@ -36,6 +36,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.johnhiott.darkskyandroidlib.ForecastApi;
 import com.johnhiott.darkskyandroidlib.RequestBuilder;
+import com.johnhiott.darkskyandroidlib.Weather;
 import com.johnhiott.darkskyandroidlib.models.Request;
 import com.johnhiott.darkskyandroidlib.models.WeatherResponse;
 
@@ -62,9 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBuilder weather = new RequestBuilder();
 
+        String Latitude = "25.7617";
+        String Longitude = "-80.1918";
+
         Request request = new Request();
-        request.setLat("25.7617");
-        request.setLng("-80.1918");
+        request.setLat(Latitude);
+        request.setLng(Longitude);
         request.setUnits(Request.Units.US);
         request.setLanguage(Request.Language.ENGLISH);
         request.addExcludeBlock(Request.Block.CURRENTLY);
@@ -135,8 +139,8 @@ class WeatherActivity extends AppCompatActivity implements
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
-    private double currentLatitude;
-    private double currentLongitude;
+    public static double currentLatitude;
+    public static double currentLongitude;
 
 
 
