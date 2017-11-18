@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        double axx= WeatherActivity.ax;
+        double ayy = WeatherActivity.ay;
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         setContentView(R.layout.activity_main);
@@ -65,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBuilder weather = new RequestBuilder();
 
-        String Latitude = "40.232";
-        String Longitude = "-80.1918";
+        String Latitude = Double.toString(axx);
+        String Longitude = Double.toString(ayy);
+
 
         Request request = new Request();
         request.setLat(Latitude);
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 double farenTemp = (celsiusTemp * (9/5)) + 32;
                 double tempSummary = Log.d(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
                 double tempHourly = Log.d(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
-                weather_print.setText("Weather in Miami is " + (tempHourly) + " °F.");
+                weather_print.setText("Weather in Santa Cruz is " + (tempHourly) + " °F.");
             }
 
             @Override
@@ -144,6 +147,9 @@ class WeatherActivity extends AppCompatActivity implements
 
     private double currentLatitude;
     private double currentLongitude;
+
+    public static double ax;
+    public static double ay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,6 +266,8 @@ class WeatherActivity extends AppCompatActivity implements
     public void onLocationChanged(Location location) {
         currentLatitude = location.getLatitude();
         currentLongitude = location.getLongitude();
+        ax = location.getLatitude();
+        ay = location.getLongitude();
 
         Toast.makeText(this, currentLatitude + " WORKS " + currentLongitude + "", Toast.LENGTH_LONG).show();
     }
