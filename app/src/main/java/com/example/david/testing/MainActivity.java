@@ -32,6 +32,7 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.johnhiott.darkskyandroidlib.ForecastApi;
@@ -48,6 +49,7 @@ import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBuilder weather = new RequestBuilder();
 
-        String Latitude = "25.7617";
+        String Latitude = "40.232";
         String Longitude = "-80.1918";
 
         Request request = new Request();
@@ -139,10 +141,9 @@ class WeatherActivity extends AppCompatActivity implements
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
-    public static double currentLatitude;
-    public static double currentLongitude;
 
-
+    private double currentLatitude;
+    private double currentLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
