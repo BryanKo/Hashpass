@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.johnhiott.darkskyandroidlib.ForecastApi;
 import com.johnhiott.darkskyandroidlib.RequestBuilder;
 import com.johnhiott.darkskyandroidlib.models.Request;
@@ -24,8 +21,11 @@ import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        double axx= weatherCurrent.ax;
+        double ayy = weatherCurrent.ay;
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         setContentView(R.layout.activity_main);
@@ -39,9 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBuilder weather = new RequestBuilder();
 
+        String Latitude = Double.toString(axx);
+        String Longitude = Double.toString(ayy);
+
+
         Request request = new Request();
-        request.setLat("36.9914");
-        request.setLng("-122.0609");
+        request.setLat(Latitude);
+        request.setLng(Longitude);
         request.setUnits(Request.Units.US);
         request.setLanguage(Request.Language.ENGLISH);
         request.addExcludeBlock(Request.Block.CURRENTLY);
@@ -51,17 +55,18 @@ public class MainActivity extends AppCompatActivity {
             String TAG = null;
             @Override
             public void success(WeatherResponse weatherResponse, Response response) {
-                double celsiusTemp = Log.v(TAG, "First Temp: " + weatherResponse.getCurrently().getTemperature());
+                double celsiusTemp = Log.d(TAG, "First Temp: " + weatherResponse.getCurrently().getTemperature());
                 double farenTemp = (celsiusTemp * (9/5)) + 32;
-                double tempSummary = Log.v(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
-                double tempHourly = Log.v(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
-                weather_print.setText("Weather in Santa Cruz is " + (farenTemp) + " °F.");
+                double tempSummary = Log.d(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
+                double tempHourly = Log.d(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
+                weather_print.setText("Weather in Santa Cruz is " + (tempHourly) + " °F.");
             }
 
             @Override
             public void failure(RetrofitError retrofitError) {
                 Log.d(TAG, "Error while calling: " + retrofitError.getUrl());
                 Log.d(TAG, retrofitError.toString());
+                weather_print.setText("failure to access weather");
             }
         });
 
@@ -100,3 +105,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
+
