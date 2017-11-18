@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.david.testing.indoorCurrent">
+
+    <TextView
+        android:id="@+id/tvIndoorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Business Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvIndoorLoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Location"
+        app:layout_constraintStart_toStartOf="@+id/tvIndoorName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvIndoorRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rating"
+        app:layout_constraintStart_toStartOf="@+id/tvIndoorLoc"
+        app:layout_constraintTop_toBottomOf="@+id/tvIndoorLoc" />
+
+    <TextView
+        android:id="@+id/tvIndoorPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="@+id/tvIndoorRating"
+        app:layout_constraintTop_toBottomOf="@+id/tvIndoorRating" />
+
+    <TextView
+        android:id="@+id/tvIndoorDist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distance"
+        app:layout_constraintStart_toStartOf="@+id/tvIndoorPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tvIndoorPrice" />
+
+</android.support.constraint.ConstraintLayout>
