@@ -8,15 +8,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.dvdme.ForecastIOLib.FIOCurrently;
+import com.github.dvdme.ForecastIOLib.ForecastIO;
 import com.johnhiott.darkskyandroidlib.ForecastApi;
 import com.johnhiott.darkskyandroidlib.RequestBuilder;
 import com.johnhiott.darkskyandroidlib.models.Request;
 import com.johnhiott.darkskyandroidlib.models.WeatherResponse;
 
 
+import org.apache.http.HttpClientConnection;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
+import com.loopj.android.http.RequestParams;
+
+
+import cz.msebera.android.httpclient.Header;
+import okhttp3.OkHttpClient;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         double axx= weatherCurrent.ax;
         double ayy = weatherCurrent.ay;
+        String BASE_URL = "https://api.forecast.io/forecast/";
         super.onCreate(savedInstanceState);
-        ForecastApi.create("4fb2c715ea744173c72290437de1c776");
+        String apiKey = "4fb2c715ea744173c72290437de1c776";
+        ForecastApi.create(apiKey);
         setContentView(R.layout.activity_main);
+
 
         Button currentFood = (Button) findViewById(R.id.button13);
         Button currentBar = (Button) findViewById(R.id.button14);
@@ -42,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         String Latitude = Double.toString(axx);
         String Longitude = Double.toString(ayy);
 
-
         Request request = new Request();
         request.setLat(Latitude);
         request.setLng(Longitude);
@@ -50,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
         request.setLanguage(Request.Language.ENGLISH);
         request.addExcludeBlock(Request.Block.CURRENTLY);
         request.removeExcludeBlock(Request.Block.CURRENTLY);
+
+        String url = "https://api.forecast.io/forecast";
+        AsyncHttpClient client = new AsyncHttpClient();
 
         weather.getWeather(request, new Callback<WeatherResponse>() {
             String TAG = null;
@@ -69,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
                 weather_print.setText("failure to access weather");
             }
         });
+
+
 
         currentFood.setOnClickListener(new View.OnClickListener(){
             @Override
