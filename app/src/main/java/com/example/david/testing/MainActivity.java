@@ -26,8 +26,10 @@ import retrofit.client.Response;
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        double axx= weatherCurrent.ax;
-        double ayy = weatherCurrent.ay;
+        //double axx= weatherCurrent.ax;
+        //double ayy = weatherCurrent.ay;
+        double axx = 36.9741;
+        double ayy = -122.0308;
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -80,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
             String TAG = null;
             @Override
             public void success(WeatherResponse weatherResponse, Response response) {
-                double celsiusTemp = Log.d(TAG, "First Temp: " + weatherResponse.getCurrently().getTemperature());
-                double farenTemp = (celsiusTemp * (9/5)) + 32;
-                double tempSummary = Log.d(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
-                double tempHourly = Log.d(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
-                weather_print.setText("Weather in Santa Cruz is " + (tempHourly) + " °F.");
+                Log.d(TAG, "First Temp: " + weatherResponse.getCurrently().getTemperature());
+                Log.d(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
+                Log.d(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
+                weather_print.setText("Weather in Santa Cruz is "
+                                        + weatherResponse.getCurrently().getTemperature() + " °F.");
             }
 
             @Override
