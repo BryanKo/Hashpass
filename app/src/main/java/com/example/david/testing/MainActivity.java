@@ -87,10 +87,16 @@ public class MainActivity extends AppCompatActivity {
                             else {
                                 System.out.println("error");
                             }
-                            
 
                             String summary = current.getString("summary");
                             Log.d("Summary",summary);
+
+                            if (summary.equals("Clear")) {
+                                System.out.println("Temperature is currently clear");
+                            }
+                            else {
+                                System.out.println("Temperature is not clear");
+                            }
 
                             String icon = current.getString("icon");
                             Log.d("Icon",icon);
