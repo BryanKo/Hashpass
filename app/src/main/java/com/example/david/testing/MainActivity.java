@@ -8,26 +8,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.johnhiott.darkskyandroidlib.ForecastApi;
 import com.johnhiott.darkskyandroidlib.RequestBuilder;
 import com.johnhiott.darkskyandroidlib.models.Request;
 import com.johnhiott.darkskyandroidlib.models.WeatherResponse;
-
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
+
 public class MainActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         double axx= weatherCurrent.ax;
         double ayy = weatherCurrent.ay;
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
+        final String apiKey = "4fb2c715ea744173c72290437de1c776";
         setContentView(R.layout.activity_main);
 
         Button currentFood = (Button) findViewById(R.id.button13);
@@ -39,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBuilder weather = new RequestBuilder();
 
-        String Latitude = Double.toString(axx);
-        String Longitude = Double.toString(ayy);
-
+        final String Latitude = Double.toString(axx);
+        final String Longitude = Double.toString(ayy);
+        final String baseURL = "https://api.darksky.net/forecast";
 
         Request request = new Request();
         request.setLat(Latitude);
@@ -50,6 +53,28 @@ public class MainActivity extends AppCompatActivity {
         request.setLanguage(Request.Language.ENGLISH);
         request.addExcludeBlock(Request.Block.CURRENTLY);
         request.removeExcludeBlock(Request.Block.CURRENTLY);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = baseURL +"/" +apiKey + "/" + Latitude + "," + Longitude;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(com.android.volley.Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.d("WEB_RESPONSE", response.toString());
+                        System.out.println("Successfully and is working");
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Not Working");
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
 
         weather.getWeather(request, new Callback<WeatherResponse>() {
             String TAG = null;
