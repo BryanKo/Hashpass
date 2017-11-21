@@ -70,7 +70,31 @@ public class MainActivity extends AppCompatActivity {
                         // Display the first 500 characters of the response string.
                         try {
                             JSONObject object = new JSONObject(response);
-                            Log.d("json object", object.toString());
+                            //Log.d("json object", object.toString());
+
+                            JSONObject current = object.getJSONObject("currently");
+                            //Log.d("Current Information",current.toString());
+
+                            int temp = current.getInt("temperature");
+                            Log.d("Temperature:", " " + temp);
+
+                            if (temp < 50) {
+                                System.out.println("1");
+                            }
+                            else if (temp > 55) {
+                                System.out.println("2");
+                            }
+                            else {
+                                System.out.println("error");
+                            }
+                            
+
+                            String summary = current.getString("summary");
+                            Log.d("Summary",summary);
+
+                            String icon = current.getString("icon");
+                            Log.d("Icon",icon);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
