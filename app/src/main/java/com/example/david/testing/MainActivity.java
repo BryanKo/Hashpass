@@ -17,6 +17,9 @@ import com.johnhiott.darkskyandroidlib.RequestBuilder;
 import com.johnhiott.darkskyandroidlib.models.Request;
 import com.johnhiott.darkskyandroidlib.models.WeatherResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -65,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            Log.d("json object", object.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Log.d("WEB_RESPONSE", response.toString());
                         System.out.println("Successfully and is working");
                     }
