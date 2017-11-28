@@ -6,25 +6,26 @@
     android:layout_height="match_parent"
     tools:context="com.example.david.testing.MainActivity">
 
+
     <TextView
-        android:id="@+id/welpLogo"
+        android:id="@+id/textView_Location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
-        android:text="Welp Recommendation App" />
+        android:text="Santa Cruz" />
 
 
     <TextView
         android:id="@+id/textView_Weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welpLogo"
+        android:layout_below="@+id/textView_Location"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="Temperature goes here " />
+        android:layout_marginTop="10dp"
+        android:text="degF/C"
+        android:textSize="80dp"/>
 
 
     <!--This starts the horizontal scrolling area-->
@@ -476,7 +477,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/textView_Weather"
-        android:layout_centerHorizontal="true" >
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
 
         <!--<Button-->
             <!--android:id="@+id/foodButton"-->
