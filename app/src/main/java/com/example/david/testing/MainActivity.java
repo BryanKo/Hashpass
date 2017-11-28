@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         double axx = 36.9741;
         double ayy = -122.0308;
         final String[] currWeather = new String[1];
+        final String[] currLoc = new String[1];
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -103,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
                             String icon = current.getString("icon");
                             Log.d("Icon",icon);
 
+                            String timezone = object.getString("timezone");
+                            currLoc[0] = timezone;
+                            Log.d("Location", timezone);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -145,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, foodCurrent.class);
                 Bundle extras = new Bundle();
                 extras.putStringArray("passCurrWeather", currWeather);
+                extras.putStringArray("passCurrLoc", currLoc);
                 intent.putExtras(extras);
                 startActivity(intent);
             }

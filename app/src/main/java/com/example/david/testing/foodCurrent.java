@@ -3,6 +3,7 @@ package com.example.david.testing;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.yelp.fusion.client.connection.YelpFusionApi;
@@ -25,6 +26,10 @@ public class foodCurrent extends AppCompatActivity {
     String appId = "3v_MqsnS4xUByPuMTTjKZw";
     String appSecret = "41AchC7qNowuPe2y2GPUnGPj4Xc25h9SRCEyuSzU7QYZKq6gzfgTUyyHpu69PohB";
     ArrayList<Business> businesses;
+    ArrayList<Business> allBusinesses;
+    final ArrayList<String> businessesName = new ArrayList<>();
+    final ArrayList<String> businessesImg = new ArrayList<>();
+    final ArrayList<String> businesessLoc = new ArrayList<>();
     int businessIndex = 0;
 
     @Override
@@ -46,7 +51,7 @@ public class foodCurrent extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String[] currWeather = extras.getStringArray("passCurrWeather");
         String[] currLoc = extras.getStringArray("passCurrLoc");
-        System.out.println(currWeather[0]);
+        System.out.println(currLoc[0]);
         businessWeather.setText(currWeather[0]);
 
         apiFactory = new YelpFusionApiFactory();
@@ -57,9 +62,9 @@ public class foodCurrent extends AppCompatActivity {
             // Hashmap to store parameters
             Map<String, String> params = new HashMap<>();
             params.put("term", "chinese food");
-            //params.put("radius", "5");
-            params.put("location", "santa cruz");
-            params.put("open_now", "true");
+            params.put("radius", "8046");               // 5 mile radius; radius is calculated in meters
+            params.put("location", "Santa Cruz");
+            params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
 
             Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
             SearchResponse searchResponse = call.execute().body();
@@ -67,6 +72,7 @@ public class foodCurrent extends AppCompatActivity {
             businesses = searchResponse.getBusinesses();
 
             Business business = businesses.get(businessIndex);
+            allBusinesses = new ArrayList<>();
 
             businessName.setText(business.getName());
             businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
@@ -75,6 +81,21 @@ public class foodCurrent extends AppCompatActivity {
             businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+//        System.out.println(businessIndex);
+//        System.out.println(businesses.size());
+
+        for (int i = businessIndex; i < businesses.size(); i++) {
+            allBusinesses.add(businesses.get(i));
+            businessIndex++;
+        }
+        Log.d("list", allBusinesses.toString());
+
+        for (int i=0; i < allBusinesses.size(); i++) {
+            businessesName.add(allBusinesses.get(i).getName());
+            businessesImg.add(allBusinesses.get(i).getImageUrl());
+            businesessLoc.add((allBusinesses.get(i).getLocation().getAddress1() + ", " + allBusinesses.get(i).getLocation().getCity()
+                    + ", " + allBusinesses.get(i).getLocation().getState() + " " + allBusinesses.get(i).getLocation().getZipCode()));
         }
     }
 
