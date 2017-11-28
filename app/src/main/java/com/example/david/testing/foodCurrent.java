@@ -1,27 +1,14 @@
 package com.example.david.testing;
 
-import android.content.Intent;
-import android.os.StrictMode;
-import android.provider.SearchRecentSuggestions;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
 import com.yelp.fusion.client.connection.YelpFusionApi;
 import com.yelp.fusion.client.connection.YelpFusionApiFactory;
 import com.yelp.fusion.client.models.Business;
 import com.yelp.fusion.client.models.SearchResponse;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -34,7 +21,7 @@ import retrofit2.Call;
 
 public class foodCurrent extends AppCompatActivity {
     YelpFusionApiFactory apiFactory;
-    TextView businessName, businessLoc, businessRating, businessPrice, businessDist;
+    TextView businessName, businessLoc, businessRating, businessPrice, businessDist, businessWeather;
     String appId = "3v_MqsnS4xUByPuMTTjKZw";
     String appSecret = "41AchC7qNowuPe2y2GPUnGPj4Xc25h9SRCEyuSzU7QYZKq6gzfgTUyyHpu69PohB";
     ArrayList<Business> businesses;
@@ -48,11 +35,19 @@ public class foodCurrent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_current);
 
+
         businessName = (TextView) findViewById(R.id.tvFoodName);
         businessLoc = (TextView) findViewById(R.id.tvFoodLoc);
         businessRating = (TextView) findViewById(R.id.tvFoodRating);
         businessPrice = (TextView) findViewById(R.id.tvFoodPrice);
         businessDist = (TextView) findViewById(R.id.tvFoodDist);
+        businessWeather = (TextView) findViewById(R.id.tvWeather);
+
+        Bundle extras = getIntent().getExtras();
+        String[] currWeather = extras.getStringArray("passCurrWeather");
+        String[] currLoc = extras.getStringArray("passCurrLoc");
+        System.out.println(currWeather[0]);
+        businessWeather.setText(currWeather[0]);
 
         apiFactory = new YelpFusionApiFactory();
         try {
@@ -78,7 +73,6 @@ public class foodCurrent extends AppCompatActivity {
             businessRating.setText(String.valueOf(business.getRating()));
             businessPrice.setText(business.getPrice());
             businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
-
         } catch (IOException e) {
             e.printStackTrace();
         }

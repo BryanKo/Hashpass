@@ -1,8 +1,8 @@
 package com.example.david.testing;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //double ayy = weatherCurrent.ay;
         double axx = 36.9741;
         double ayy = -122.0308;
+        final String[] currWeather = new String[1];
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView weather_print = (TextView) findViewById(R.id.textView_Weather);
 
-        RequestBuilder weather = new RequestBuilder();
+        final RequestBuilder weather = new RequestBuilder();
 
         final String Latitude = Double.toString(axx);
         final String Longitude = Double.toString(ayy);
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             String summary = current.getString("summary");
+                            currWeather[0] = summary;
                             Log.d("Summary",summary);
 
                             if (summary.equals("Clear")) {
@@ -141,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 Intent intent = new Intent(MainActivity.this, foodCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", currWeather);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
