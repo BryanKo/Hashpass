@@ -7,67 +7,15 @@
     tools:context="com.example.david.testing.foodCurrent"
     tools:layout_editor_absoluteY="81dp">
 
-    <TextView
-        android:id="@+id/tvFoodName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="98dp"
-        android:text="Business Name"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvFoodLoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Location"
-        app:layout_constraintStart_toStartOf="@+id/tvFoodName"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvFoodRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rating"
-        app:layout_constraintStart_toStartOf="@+id/tvFoodLoc"
-        app:layout_constraintTop_toBottomOf="@+id/tvFoodLoc" />
-
-    <TextView
-        android:id="@+id/tvFoodPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Price"
-        app:layout_constraintStart_toStartOf="@+id/tvFoodRating"
-        app:layout_constraintTop_toBottomOf="@+id/tvFoodRating" />
-
-    <TextView
-        android:id="@+id/tvFoodDist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distance"
-        app:layout_constraintStart_toStartOf="@+id/tvFoodPrice"
-        app:layout_constraintTop_toBottomOf="@+id/tvFoodPrice" />
-
-    <TextView
-        android:id="@+id/tvWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Weather"
-        app:layout_constraintStart_toStartOf="@+id/tvFoodDist"
-        app:layout_constraintTop_toBottomOf="@+id/tvFoodDist" />
-
     <ListView
         android:id="@+id/lvBusinesses"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWeather" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

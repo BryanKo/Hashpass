@@ -52,46 +52,44 @@ public class businessListView extends ArrayAdapter<String> {
         TextView businessAdr = (TextView) businessInfo.findViewById(R.id.tvBusinessAdr);
         TextView businessDist = (TextView) businessInfo.findViewById(R.id.tvBusinessDist);
 
-        new DownloadImageTask((ImageView) businessInfo.findViewById(R.id.ivBusinesses))
-                .execute(businessesImg.get(position));
+        new dlBusinessImg((ImageView) businessInfo.findViewById(R.id.ivBusinesses)).execute(businessesImg.get(position));
 
         businessName.setText(businessesName.get(position));
         businessAdr.setText(businesessAdr.get(position));
-        //businessDist.setText(businessesDist.get(position).toString());
         businessDist.setText(String.valueOf(round((businessesDist.get(position) / 1609.34), 2)).concat(" miles"));
         return businessInfo;
     };
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
+    private class dlBusinessImg extends AsyncTask<String, Void, Bitmap> {
+        ImageView businessImg;
 
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
+        public dlBusinessImg(ImageView businessImg) {
+            this.businessImg = businessImg;
         }
 
         protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
+            String imgurl = urls[0];
+            Bitmap dledBusinessImg = null;
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
+                InputStream inputStream = new java.net.URL(imgurl).openStream();
+                dledBusinessImg = BitmapFactory.decodeStream(inputStream);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
-            return mIcon11;
+            return dledBusinessImg;
         }
 
         protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
+            businessImg.setImageBitmap(result);
         }
     }
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+        BigDecimal bigDecimal = new BigDecimal(value);
+        bigDecimal = bigDecimal.setScale(places, RoundingMode.HALF_UP);
+        return bigDecimal.doubleValue();
     }
 }

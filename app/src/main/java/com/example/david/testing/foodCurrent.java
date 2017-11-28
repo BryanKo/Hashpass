@@ -18,21 +18,22 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import retrofit2.Call;
 
 public class foodCurrent extends AppCompatActivity {
     YelpFusionApiFactory apiFactory;
-    TextView businessName, businessLoc, businessRating, businessPrice, businessDist, businessWeather;
+    TextView businessWeather;
     ListView businessList;
     String appId = "3v_MqsnS4xUByPuMTTjKZw";
     String appSecret = "41AchC7qNowuPe2y2GPUnGPj4Xc25h9SRCEyuSzU7QYZKq6gzfgTUyyHpu69PohB";
     ArrayList<Business> businesses;
-    ArrayList<Business> allBusinesses;
+    ArrayList<Business> allBusinesses = new ArrayList<>();
     final ArrayList<String> businessesImg = new ArrayList<>();
     final ArrayList<String> businessesName = new ArrayList<>();
     final ArrayList<String> businesessLoc = new ArrayList<>();
-    final ArrayList<Double> businesessDist = new ArrayList<Double>();
+    final ArrayList<Double> businesessDist = new ArrayList<>();
     int businessIndex = 0;
 
     @Override
@@ -43,20 +44,13 @@ public class foodCurrent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_current);
 
-
-        businessName = (TextView) findViewById(R.id.tvFoodName);
-        businessLoc = (TextView) findViewById(R.id.tvFoodLoc);
-        businessRating = (TextView) findViewById(R.id.tvFoodRating);
-        businessPrice = (TextView) findViewById(R.id.tvFoodPrice);
-        businessDist = (TextView) findViewById(R.id.tvFoodDist);
-        businessWeather = (TextView) findViewById(R.id.tvWeather);
         businessList = (ListView) findViewById(R.id.lvBusinesses);
 
         Bundle extras = getIntent().getExtras();
         String[] currWeather = extras.getStringArray("passCurrWeather");
-        String[] currLoc = extras.getStringArray("passCurrLoc");
-        System.out.println(currLoc[0]);
-        businessWeather.setText(currWeather[0]);
+        double currLat = extras.getDouble("passCurrLat");
+        double currLng = extras.getDouble("passCurrLng");
+        //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
 
         apiFactory = new YelpFusionApiFactory();
         try {
@@ -65,9 +59,10 @@ public class foodCurrent extends AppCompatActivity {
 
             // Hashmap to store parameters
             Map<String, String> params = new HashMap<>();
-            params.put("term", "chinese food");
-            params.put("radius", "8000");               // 16000 meters = 10 mile radius; radius is calculated in meters
-            params.put("location", "Santa Cruz");
+            params.put("term", "food");
+            params.put("radius", "39000");               // 16000 meters = 10 mile radius; radius is calculated in meters
+            params.put("latitude", String.valueOf(currLat));
+            params.put("longitude", String.valueOf(currLng));
             params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
 
             Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
@@ -78,16 +73,15 @@ public class foodCurrent extends AppCompatActivity {
             Business business = businesses.get(businessIndex);
             allBusinesses = new ArrayList<>();
 
-            businessName.setText(business.getName());
-            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
-            businessRating.setText(String.valueOf(business.getRating()));
-            businessPrice.setText(business.getPrice());
-            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
+//            businessName.setText(business.getName());
+//            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
+//            businessRating.setText(String.valueOf(business.getRating()));
+//            businessPrice.setText(business.getPrice());
+//            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        System.out.println(businessIndex);
-//        System.out.println(businesses.size());
+        Log.d("businessArr", String.valueOf(businesses.size()));
 
         for (int i = businessIndex; i < businesses.size(); i++) {
             allBusinesses.add(businesses.get(i));
@@ -95,14 +89,18 @@ public class foodCurrent extends AppCompatActivity {
         }
         Log.d("list", allBusinesses.toString());
 
-        for (int i=0; i < allBusinesses.size(); i++) {
-            businessesName.add(allBusinesses.get(i).getName());
-            businessesImg.add(allBusinesses.get(i).getImageUrl());
-            businesessLoc.add((allBusinesses.get(i).getLocation().getAddress1() + ", " +
-                               allBusinesses.get(i).getLocation().getCity() + ", " +
-                               allBusinesses.get(i).getLocation().getState() + " " +
-                               allBusinesses.get(i).getLocation().getZipCode()));
-            businesessDist.add(allBusinesses.get(i).getDistance());
+        for (int i=0; i < 5; i++) {
+            Random r = new Random();
+            int low = 0;
+            int high = allBusinesses.size() - 1;
+            int randNum = r.nextInt(high-low) + low;
+            businessesName.add(allBusinesses.get(randNum).getName());
+            businessesImg.add(allBusinesses.get(randNum).getImageUrl());
+            businesessLoc.add((allBusinesses.get(randNum).getLocation().getAddress1() + ", " +
+                               allBusinesses.get(randNum).getLocation().getCity() + ", " +
+                               allBusinesses.get(randNum).getLocation().getState() + " " +
+                               allBusinesses.get(randNum).getLocation().getZipCode()));
+            businesessDist.add(allBusinesses.get(randNum).getDistance());
         }
 
         businessListView adapter = new businessListView(this, businessesImg, businessesName, businesessLoc, businesessDist);
