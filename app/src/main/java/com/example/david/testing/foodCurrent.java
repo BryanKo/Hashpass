@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yelp.fusion.client.connection.YelpFusionApi;
@@ -23,13 +24,15 @@ import retrofit2.Call;
 public class foodCurrent extends AppCompatActivity {
     YelpFusionApiFactory apiFactory;
     TextView businessName, businessLoc, businessRating, businessPrice, businessDist, businessWeather;
+    ListView businessList;
     String appId = "3v_MqsnS4xUByPuMTTjKZw";
     String appSecret = "41AchC7qNowuPe2y2GPUnGPj4Xc25h9SRCEyuSzU7QYZKq6gzfgTUyyHpu69PohB";
     ArrayList<Business> businesses;
     ArrayList<Business> allBusinesses;
-    final ArrayList<String> businessesName = new ArrayList<>();
     final ArrayList<String> businessesImg = new ArrayList<>();
+    final ArrayList<String> businessesName = new ArrayList<>();
     final ArrayList<String> businesessLoc = new ArrayList<>();
+    final ArrayList<Double> businesessDist = new ArrayList<Double>();
     int businessIndex = 0;
 
     @Override
@@ -47,6 +50,7 @@ public class foodCurrent extends AppCompatActivity {
         businessPrice = (TextView) findViewById(R.id.tvFoodPrice);
         businessDist = (TextView) findViewById(R.id.tvFoodDist);
         businessWeather = (TextView) findViewById(R.id.tvWeather);
+        businessList = (ListView) findViewById(R.id.lvBusinesses);
 
         Bundle extras = getIntent().getExtras();
         String[] currWeather = extras.getStringArray("passCurrWeather");
@@ -62,7 +66,7 @@ public class foodCurrent extends AppCompatActivity {
             // Hashmap to store parameters
             Map<String, String> params = new HashMap<>();
             params.put("term", "chinese food");
-            params.put("radius", "8046");               // 5 mile radius; radius is calculated in meters
+            params.put("radius", "8000");               // 16000 meters = 10 mile radius; radius is calculated in meters
             params.put("location", "Santa Cruz");
             params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
 
@@ -94,9 +98,15 @@ public class foodCurrent extends AppCompatActivity {
         for (int i=0; i < allBusinesses.size(); i++) {
             businessesName.add(allBusinesses.get(i).getName());
             businessesImg.add(allBusinesses.get(i).getImageUrl());
-            businesessLoc.add((allBusinesses.get(i).getLocation().getAddress1() + ", " + allBusinesses.get(i).getLocation().getCity()
-                    + ", " + allBusinesses.get(i).getLocation().getState() + " " + allBusinesses.get(i).getLocation().getZipCode()));
+            businesessLoc.add((allBusinesses.get(i).getLocation().getAddress1() + ", " +
+                               allBusinesses.get(i).getLocation().getCity() + ", " +
+                               allBusinesses.get(i).getLocation().getState() + " " +
+                               allBusinesses.get(i).getLocation().getZipCode()));
+            businesessDist.add(allBusinesses.get(i).getDistance());
         }
+
+        businessListView adapter = new businessListView(this, businessesImg, businessesName, businesessLoc, businesessDist);
+        businessList.setAdapter(adapter);
     }
 
     public static double round(double value, int places) {
