@@ -23,7 +23,8 @@
         <activity android:name=".foodCurrent" />
         <activity android:name=".barCurrent" />
         <activity android:name=".activeCurrent" />
-        <activity android:name=".indoorCurrent"></activity>
+        <activity android:name=".indoorCurrent" />
+        <activity android:name=".businessInfo" />
     </application>
 
 </manifest>

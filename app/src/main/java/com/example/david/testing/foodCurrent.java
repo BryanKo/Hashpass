@@ -1,11 +1,15 @@
 package com.example.david.testing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yelp.fusion.client.connection.YelpFusionApi;
 import com.yelp.fusion.client.connection.YelpFusionApiFactory;
@@ -65,7 +69,7 @@ public class foodCurrent extends AppCompatActivity {
 
 
         apiFactory = new YelpFusionApiFactory();
-       if (currTemp[0] > 70 && currWeather[0].equalsIgnoreCase("Clear")) {
+       if (currTemp[0] < 70 && currWeather[0].equalsIgnoreCase("Partly Cloudy")) {
             try {
                 // Api call with client id and client secret id
                 YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
@@ -107,7 +111,7 @@ public class foodCurrent extends AppCompatActivity {
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
                 params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
-                params.put("limit", "1");
+                params.put("limit", "50");
 
                 Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
                 SearchResponse searchResponse = call.execute().body();
@@ -116,12 +120,6 @@ public class foodCurrent extends AppCompatActivity {
 
                 Business business = businesses.get(businessIndex);
                 allBusinesses = new ArrayList<>();
-
-//            businessName.setText(business.getName());
-//            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
-//            businessRating.setText(String.valueOf(business.getRating()));
-//            businessPrice.setText(business.getPrice());
-//            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -159,13 +157,19 @@ public class foodCurrent extends AppCompatActivity {
 
         businessListView adapter = new businessListView(this, businessesImg, businessesName, businesessLoc, businesessDist);
         businessList.setAdapter(adapter);
-    }
 
-    public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+        businessList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(businessesName != null) {
+                    String Slecteditem = businessesName.get(+position);
+                    Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(foodCurrent.this, businessInfo.class);
+                    Bundle extras = new Bundle();
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }
