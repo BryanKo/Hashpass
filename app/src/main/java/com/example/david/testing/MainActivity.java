@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         final double axx = 36.9741;
         final double ayy = -122.0308;
         final String[] currWeather = new String[1];
+        final double[] currTemp = new double[1];
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                             //Log.d("Current Information",current.toString());
 
                             int temp = current.getInt("temperature");
+                            currTemp[0] = temp;
                             Log.d("Temperature:", " " + temp);
 
                             if (temp < 50) {
@@ -144,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, foodCurrent.class);
                 Bundle extras = new Bundle();
                 extras.putStringArray("passCurrWeather", currWeather);
+                extras.putDoubleArray("passCurrTemp", currTemp);
                 extras.putDouble("passCurrLat", axx);
                 extras.putDouble("passCurrLng", ayy);
                 intent.putExtras(extras);

@@ -35,6 +35,7 @@ public class foodCurrent extends AppCompatActivity {
     final ArrayList<String> businesessLoc = new ArrayList<>();
     final ArrayList<Double> businesessDist = new ArrayList<>();
     int businessIndex = 0;
+    Random r = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,51 +49,104 @@ public class foodCurrent extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String[] currWeather = extras.getStringArray("passCurrWeather");
+        double[] currTemp = extras.getDoubleArray("passCurrTemp");
         double currLat = extras.getDouble("passCurrLat");
         double currLng = extras.getDouble("passCurrLng");
         //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
+        Log.d("temperature", String.valueOf(currTemp[0]));
+        Log.d("weather", String.valueOf(currWeather[0]));
+
+
+        if (currTemp[0] < 60.0 && currWeather[0].equalsIgnoreCase("Clear")) {
+            Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": True");
+        } else {
+            Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": False");
+        }
+
 
         apiFactory = new YelpFusionApiFactory();
-        try {
-            // Api call with client id and client secret id
-            YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
+       if (currTemp[0] > 70 && currWeather[0].equalsIgnoreCase("Clear")) {
+            try {
+                // Api call with client id and client secret id
+                YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
 
-            // Hashmap to store parameters
-            Map<String, String> params = new HashMap<>();
-            params.put("term", "food");
-            params.put("radius", "39000");               // 16000 meters = 10 mile radius; radius is calculated in meters
-            params.put("latitude", String.valueOf(currLat));
-            params.put("longitude", String.valueOf(currLng));
-            params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
+                // Hashmap to store parameters
+                Map<String, String> params = new HashMap<>();
+                params.put("term", "food");
+                params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
+                params.put("latitude", String.valueOf(currLat));
+                params.put("longitude", String.valueOf(currLng));
+                params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
+                params.put("limit", "50");
 
-            Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
-            SearchResponse searchResponse = call.execute().body();
+                Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
+                SearchResponse searchResponse = call.execute().body();
 
-            businesses = searchResponse.getBusinesses();
+                businesses = searchResponse.getBusinesses();
 
-            Business business = businesses.get(businessIndex);
-            allBusinesses = new ArrayList<>();
+                Business business = businesses.get(businessIndex);
+                allBusinesses = new ArrayList<>();
 
 //            businessName.setText(business.getName());
 //            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
 //            businessRating.setText(String.valueOf(business.getRating()));
 //            businessPrice.setText(business.getPrice());
 //            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                // Api call with client id and client secret id
+                YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
+
+                // Hashmap to store parameters
+                Map<String, String> params = new HashMap<>();
+                params.put("term", "chinese food");
+                params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
+                params.put("latitude", String.valueOf(currLat));
+                params.put("longitude", String.valueOf(currLng));
+                params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
+                params.put("limit", "1");
+
+                Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
+                SearchResponse searchResponse = call.execute().body();
+
+                businesses = searchResponse.getBusinesses();
+
+                Business business = businesses.get(businessIndex);
+                allBusinesses = new ArrayList<>();
+
+//            businessName.setText(business.getName());
+//            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
+//            businessRating.setText(String.valueOf(business.getRating()));
+//            businessPrice.setText(business.getPrice());
+//            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        Log.d("businessArr", String.valueOf(businesses.size()));
+        //Log.d("businesssize", String.valueOf(allBusinesses.size()));
 
         for (int i = businessIndex; i < businesses.size(); i++) {
             allBusinesses.add(businesses.get(i));
             businessIndex++;
         }
-        Log.d("list", allBusinesses.toString());
+        Log.d("list", String.valueOf(allBusinesses.size()));
+
+/*        for (int i=0; i < allBusinesses.size(); i++) {
+            businessesName.add(allBusinesses.get(i).getName());
+            businessesImg.add(allBusinesses.get(i).getImageUrl());
+            businesessLoc.add((allBusinesses.get(i).getLocation().getAddress1() + ", " +
+                    allBusinesses.get(i).getLocation().getCity() + ", " +
+                    allBusinesses.get(i).getLocation().getState() + " " +
+                    allBusinesses.get(i).getLocation().getZipCode()));
+            businesessDist.add(allBusinesses.get(i).getDistance());
+        }*/
 
         for (int i=0; i < 5; i++) {
-            Random r = new Random();
             int low = 0;
-            int high = allBusinesses.size() - 1;
+            int high = allBusinesses.size();
             int randNum = r.nextInt(high-low) + low;
             businessesName.add(allBusinesses.get(randNum).getName());
             businessesImg.add(allBusinesses.get(randNum).getImageUrl());
