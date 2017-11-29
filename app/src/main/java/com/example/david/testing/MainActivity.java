@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         final double ayy = -122.0308;
         final String[] currWeather = new String[1];
         final double[] currTemp = new double[1];
+        final String[] currIcon = new String[1];
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             String icon = current.getString("icon");
+                            currIcon[0] = icon;
                             Log.d("Icon",icon);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -158,6 +160,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 Intent intent = new Intent(MainActivity.this, barCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", currWeather);
+                extras.putDoubleArray("passCurrTemp", currTemp);
+                extras.putDouble("passCurrLat", axx);
+                extras.putDouble("passCurrLng", ayy);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
@@ -166,6 +174,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 Intent intent = new Intent(MainActivity.this, activeCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", currWeather);
+                extras.putDoubleArray("passCurrTemp", currTemp);
+                extras.putDouble("passCurrLat", axx);
+                extras.putDouble("passCurrLng", ayy);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
@@ -174,6 +188,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 Intent intent = new Intent(MainActivity.this, indoorCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", currWeather);
+                extras.putDoubleArray("passCurrTemp", currTemp);
+                extras.putDouble("passCurrLat", axx);
+                extras.putDouble("passCurrLng", ayy);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
