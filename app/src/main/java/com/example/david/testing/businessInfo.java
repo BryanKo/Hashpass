@@ -15,7 +15,7 @@ public class businessInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_current);
+        setContentView(R.layout.activity_businesses_current);
 
         Bundle extras = getIntent().getExtras();
         String currBusinessName = extras.getString("passBusinessName");

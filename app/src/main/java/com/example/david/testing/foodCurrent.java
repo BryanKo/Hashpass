@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yelp.fusion.client.connection.YelpFusionApi;
@@ -17,8 +16,6 @@ import com.yelp.fusion.client.models.Business;
 import com.yelp.fusion.client.models.SearchResponse;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +25,6 @@ import retrofit2.Call;
 
 public class foodCurrent extends AppCompatActivity {
     YelpFusionApiFactory apiFactory;
-    TextView businessWeather;
     ListView businessList;
     String appId = "3v_MqsnS4xUByPuMTTjKZw";
     String appSecret = "41AchC7qNowuPe2y2GPUnGPj4Xc25h9SRCEyuSzU7QYZKq6gzfgTUyyHpu69PohB";
@@ -47,7 +43,7 @@ public class foodCurrent extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_current);
+        setContentView(R.layout.activity_businesses_current);
 
         businessList = (ListView) findViewById(R.id.lvBusinesses);
 
