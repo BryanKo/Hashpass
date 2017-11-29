@@ -162,10 +162,13 @@ public class foodCurrent extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(businessesName != null) {
-                    String Slecteditem = businessesName.get(+position);
-                    Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), businessesName.get(+position), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(foodCurrent.this, businessInfo.class);
                     Bundle extras = new Bundle();
+                    extras.putString("passBusinessName", businessesName.get(+position));
+                    //extras.put("passBusinessImg", businessesImg.get(+position));
+                    extras.putString("passBusinessLoc", businesessLoc.get(+position));
+                    extras.putDouble("passBusinessDist", businesessDist.get(+position));
                     intent.putExtras(extras);
                     startActivity(intent);
                 }
