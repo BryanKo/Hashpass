@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         final double ayy = -122.0308;
         final String[] currWeather = new String[1];
         final double[] currTemp = new double[1];
+        final String[] currIcon = new String[1];
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             String icon = current.getString("icon");
+                            currIcon[0] = icon;
                             Log.d("Icon",icon);
                         } catch (JSONException e) {
                             e.printStackTrace();
