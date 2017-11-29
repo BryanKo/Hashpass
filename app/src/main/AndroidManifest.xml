@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.david.testing">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +23,8 @@
         <activity android:name=".foodCurrent" />
         <activity android:name=".barCurrent" />
         <activity android:name=".activeCurrent" />
-        <activity android:name=".indoorCurrent"></activity>
+        <activity android:name=".indoorCurrent" />
+        <activity android:name=".businessInfo" />
     </application>
 
 </manifest>
