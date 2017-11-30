@@ -24,7 +24,7 @@ public class businessInfo extends AppCompatActivity {
         TextView cBusinessName = (TextView) findViewById(R.id.tvClickedBusinessName);
         TextView cBusinessAddr = (TextView) findViewById(R.id.tvClickedBusinessAddr);
         TextView cBusinessPrice = (TextView) findViewById(R.id.tvClickedBusinessPrice);
-        //TextView cBusinessRating = (TextView) findViewById(R.id.tvClickedBusinessRate);
+        TextView cBusinessRating = (TextView) findViewById(R.id.tvClickedBusinessRate);
 
         Bundle extras = getIntent().getExtras();
         String currbusinessImg = extras.getString("passBusinessImg");
@@ -42,7 +42,7 @@ public class businessInfo extends AppCompatActivity {
         cBusinessName.setText(currBusinessName);
         cBusinessAddr.setText(currBusinessLoc);
         cBusinessPrice.setText(currBusinessPrice);
-        //cBusinessRating.setText(passBusinessRating);
+        cBusinessRating.setText("" + passBusinessRating);
     }
 
 
