@@ -41,6 +41,7 @@
             android:textSize="15sp"/>
 
         <LinearLayout
+            android:id="@+id/layoutOverallStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/ivBusinessProfilePic"
@@ -55,27 +56,27 @@
                 android:layout_marginTop="5dp"
                 android:text="Price"
                 android:textSize="12sp" />
-                <!--android:layout_alignLeft="@+id/ivBusinessProfilePic"-->
-                <!--android:layout_alignStart="@id/ivBusinessProfilePic"-->
-                <!--android:layout_below="@+id/tvClickedBusinessAddr"-->
+            <!--android:layout_alignLeft="@+id/ivBusinessProfilePic"-->
+            <!--android:layout_alignStart="@id/ivBusinessProfilePic"-->
+            <!--android:layout_below="@+id/tvClickedBusinessAddr"-->
 
             <TextView
                 android:id="@+id/tvClickedBusinessRate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:padding="15dp"
                 android:text="Rating"
-                android:textSize="12sp"
-                android:padding="15dp"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvClickedBusinessReviewCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:padding="15dp"
                 android:text="Review Count"
-                android:textSize="12sp"
-                android:padding="15dp"/>
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -85,10 +86,11 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/ivBusinessProfilePic"
             android:layout_alignStart="@id/ivBusinessProfilePic"
-            android:layout_below="@+id/tvClickedBusinessReviewCount"
+            android:layout_below="@+id/layoutOverallStats"
             android:layout_marginTop="5dp"
             android:text="Distance"
             android:textSize="15sp"
+            android:gravity="center"
             />
 
 
