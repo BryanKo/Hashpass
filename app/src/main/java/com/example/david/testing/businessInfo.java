@@ -44,7 +44,7 @@ public class businessInfo extends AppCompatActivity {
         cBusinessName.setText(currBusinessName);
         cBusinessAddr.setText(currBusinessLoc);
         cBusinessPrice.setText(currBusinessPrice);
-        cBusinessRating.setText(passBusinessRating + " / 5");
+        cBusinessRating.setText(passBusinessRating + " / 5 stars");
         cBusinessRev.setText(passBusinessReviewCnt + " Reviews");
         cBusinessDist.setText(String.valueOf(round((currBusinessDist / 1609.34), 2)).concat(" mi"));
     }

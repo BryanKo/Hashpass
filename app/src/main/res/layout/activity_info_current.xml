@@ -21,10 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivBusinessProfilePic"
-            android:text="Distance"
-            android:textSize="15sp"
             android:gravity="right"
-            android:padding="15dp"/>
+            android:padding="15dp"
+            android:text="Distance"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="15sp" />
             <!--android:layout_below="@+id/layoutOverallStats"-->
 
 
@@ -37,6 +38,7 @@
             android:layout_below="@+id/tvClickedBusinessDist"
             android:layout_marginRight="10dp"
             android:text="Business Name Here"
+            android:textColor="@android:color/background_light"
             android:textSize="35sp" />
 
         <TextView
@@ -68,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Price"
+                android:textColor="@android:color/holo_green_light"
                 android:textSize="15sp" />
 
             <TextView
@@ -76,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Rating"
+                android:textColor="@android:color/holo_red_light"
                 android:textSize="15sp" />
 
             <TextView
