@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ArrayAdapter;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -20,6 +24,12 @@ import com.johnhiott.darkskyandroidlib.models.WeatherResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -27,6 +37,16 @@ import retrofit.client.Response;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //new layout recyclerview
+    private RelativeLayout rLayout;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
+    private ArrayList<DataModel> allDataArray;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //double axx= weatherCurrent.ax;
@@ -41,10 +61,16 @@ public class MainActivity extends AppCompatActivity {
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
         setContentView(R.layout.activity_main);
 
-        Button currentFood = (Button) findViewById(R.id.button13);
-        Button currentBar = (Button) findViewById(R.id.button14);
-        Button currentActive = (Button) findViewById(R.id.button15);
-        Button currentIndoor = (Button) findViewById(R.id.button16);
+        //Calendar stuff
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("hh a");
+        Date date = new Date();
+        int timeOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+
+//        Button currentFood = (Button) findViewById(R.id.button13);
+//        Button currentBar = (Button) findViewById(R.id.button14);
+//        Button currentActive = (Button) findViewById(R.id.button15);
+//        Button currentIndoor = (Button) findViewById(R.id.button16);
 
         final TextView weather_print = (TextView) findViewById(R.id.textView_Weather);
 
@@ -129,8 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "First Temp: " + weatherResponse.getCurrently().getTemperature());
                 Log.d(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
                 Log.d(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
-                weather_print.setText("Weather in Santa Cruz is "
-                                        + weatherResponse.getCurrently().getTemperature() + " °F.");
+                weather_print.setText(weatherResponse.getCurrently().getTemperature() + " °F.");
             }
 
             @Override
@@ -141,62 +166,101 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        currentFood.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
+//        currentFood.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//
+//                Intent intent = new Intent(MainActivity.this, foodCurrent.class);
+//                Bundle extras = new Bundle();
+//                extras.putStringArray("passCurrWeather", currWeather);
+//                extras.putDoubleArray("passCurrTemp", currTemp);
+//                extras.putDouble("passCurrLat", axx);
+//                extras.putDouble("passCurrLng", ayy);
+//                intent.putExtras(extras);
+//                startActivity(intent);
+//            }
+//        });
+//        currentBar.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//
+//                Intent intent = new Intent(MainActivity.this, barCurrent.class);
+//                Bundle extras = new Bundle();
+//                extras.putStringArray("passCurrWeather", currWeather);
+//                extras.putDoubleArray("passCurrTemp", currTemp);
+//                extras.putDouble("passCurrLat", axx);
+//                extras.putDouble("passCurrLng", ayy);
+//                intent.putExtras(extras);
+//                startActivity(intent);
+//            }
+//        });
+//        currentActive.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//
+//                Intent intent = new Intent(MainActivity.this, activeCurrent.class);
+//                Bundle extras = new Bundle();
+//                extras.putStringArray("passCurrWeather", currWeather);
+//                extras.putDoubleArray("passCurrTemp", currTemp);
+//                extras.putDouble("passCurrLat", axx);
+//                extras.putDouble("passCurrLng", ayy);
+//                intent.putExtras(extras);
+//                startActivity(intent);
+//            }
+//        });
+//        currentIndoor.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//
+//                Intent intent = new Intent(MainActivity.this, indoorCurrent.class);
+//                Bundle extras = new Bundle();
+//                extras.putStringArray("passCurrWeather", currWeather);
+//                extras.putDoubleArray("passCurrTemp", currTemp);
+//                extras.putDouble("passCurrLat", axx);
+//                extras.putDouble("passCurrLng", ayy);
+//                intent.putExtras(extras);
+//                startActivity(intent);
+//            }
+//        });
 
-                Intent intent = new Intent(MainActivity.this, foodCurrent.class);
-                Bundle extras = new Bundle();
-                extras.putStringArray("passCurrWeather", currWeather);
-                extras.putDoubleArray("passCurrTemp", currTemp);
-                extras.putDouble("passCurrLat", axx);
-                extras.putDouble("passCurrLng", ayy);
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });
-        currentBar.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
+        //Recycler view*************************************************************************8
+        allDataArray = new ArrayList<>();
+        // mButtonSet = new ArrayList<>();
 
-                Intent intent = new Intent(MainActivity.this, barCurrent.class);
-                Bundle extras = new Bundle();
-                extras.putStringArray("passCurrWeather", currWeather);
-                extras.putDoubleArray("passCurrTemp", currTemp);
-                extras.putDouble("passCurrLat", axx);
-                extras.putDouble("passCurrLng", ayy);
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });
-        currentActive.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
+//        for (int i = 0; i < 5; i++) {
+//            mDataSet.add (calendar.get(Calendar.HOUR+i)+""+calendar.get(Calendar.AM_PM));
+//        }
+//        allDataArray.add (new DataModel("Now", "Food"));
+//        calendar.add(Calendar.HOUR, 1);
+//        Date oneHour = calendar.getTime();
+//        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Food2"));
+//        calendar.add(Calendar.HOUR, 1);
+//        Date twoHour = calendar.getTime();
+//        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Food3"));
+//        calendar.add(Calendar.HOUR, 1);
+//        Date threeHour = calendar.getTime();
+//        mDataSet.add (dateFormat.format(threeHour));
+//        calendar.add(Calendar.HOUR, 1);
+//        Date fourHour = calendar.getTime();
+//        mDataSet.add (dateFormat.format(fourHour));
+//        calendar.add(Calendar.HOUR, 1);
+//        Date fiveHour = calendar.getTime();
+//        mDataSet.add (dateFormat.format(fiveHour));
+//        int i = 0;
+//
+//        while (i<5){
+//            mDataSet.add (calendar.get(Calendar.HOUR)+""+calendar.get(Calendar.AM_PM));
+//            i++;
+//        }
 
-                Intent intent = new Intent(MainActivity.this, activeCurrent.class);
-                Bundle extras = new Bundle();
-                extras.putStringArray("passCurrWeather", currWeather);
-                extras.putDoubleArray("passCurrTemp", currTemp);
-                extras.putDouble("passCurrLat", axx);
-                extras.putDouble("passCurrLng", ayy);
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });
-        currentIndoor.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
 
-                Intent intent = new Intent(MainActivity.this, indoorCurrent.class);
-                Bundle extras = new Bundle();
-                extras.putStringArray("passCurrWeather", currWeather);
-                extras.putDoubleArray("passCurrTemp", currTemp);
-                extras.putDouble("passCurrLat", axx);
-                extras.putDouble("passCurrLng", ayy);
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        //mAdapter = new com.example.david.testing.MainAdapter(allDataArray);
+        mAdapter = new MainAdapter();
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 }
