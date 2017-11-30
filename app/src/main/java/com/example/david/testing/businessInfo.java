@@ -18,11 +18,16 @@ public class businessInfo extends AppCompatActivity {
         setContentView(R.layout.activity_businesses_current);
 
         Bundle extras = getIntent().getExtras();
+        String currbusinessImg = extras.getString("passBusinessImg");
         String currBusinessName = extras.getString("passBusinessName");
         String currBusinessLoc = extras.getString("passBusinessLoc");
         double currBusinessDist = extras.getDouble("passBusinessDist");
 
-        Log.d("bundleinfo", currBusinessName + ", " + currBusinessLoc + ", " + String.valueOf(round((currBusinessDist / 1609.34), 2)).concat(" miles"));
+        String currBusinessPrice = extras.getString("passBusinessPrice");
+        double passBusinessRating = extras.getDouble("passBusinessRating");
+        int passBusinessReviewCnt = extras.getInt("passBusinessReviewCnt");
+
+        Log.d("bundleinfo", currbusinessImg + " " + currBusinessName + " " + currBusinessLoc + " " + currBusinessPrice + " " + passBusinessRating + " " + passBusinessReviewCnt + String.valueOf(round((currBusinessDist / 1609.34), 2)).concat(" miles"));
     }
 
     public static double round(double value, int places) {

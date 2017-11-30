@@ -34,6 +34,10 @@ public class foodCurrent extends AppCompatActivity {
     final ArrayList<String> businessesName = new ArrayList<>();
     final ArrayList<String> businesessLoc = new ArrayList<>();
     final ArrayList<Double> businesessDist = new ArrayList<>();
+
+    final ArrayList<String> businesessPrice = new ArrayList<>();
+    final ArrayList<Double> businesessRating = new ArrayList<>();
+    final ArrayList<Integer> businesessReviewCnt = new ArrayList<>();
     int businessIndex = 0;
     Random r = new Random();
 
@@ -143,13 +147,17 @@ public class foodCurrent extends AppCompatActivity {
             int low = 0;
             int high = allBusinesses.size();
             int randNum = r.nextInt(high-low) + low;
-            businessesName.add(allBusinesses.get(randNum).getName());
             businessesImg.add(allBusinesses.get(randNum).getImageUrl());
+            businessesName.add(allBusinesses.get(randNum).getName());
             businesessLoc.add((allBusinesses.get(randNum).getLocation().getAddress1() + ", " +
                                allBusinesses.get(randNum).getLocation().getCity() + ", " +
                                allBusinesses.get(randNum).getLocation().getState() + " " +
                                allBusinesses.get(randNum).getLocation().getZipCode()));
             businesessDist.add(allBusinesses.get(randNum).getDistance());
+
+            businesessPrice.add(allBusinesses.get(randNum).getPrice());
+            businesessRating.add(allBusinesses.get(randNum).getRating());
+            businesessReviewCnt.add(allBusinesses.get(randNum).getReviewCount());
         }
 
         businessListView adapter = new businessListView(this, businessesImg, businessesName, businesessLoc, businesessDist);
@@ -162,10 +170,14 @@ public class foodCurrent extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), businessesName.get(+position), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(foodCurrent.this, businessInfo.class);
                     Bundle extras = new Bundle();
+                    extras.putString("passBusinessImg", businessesImg.get(+position));
                     extras.putString("passBusinessName", businessesName.get(+position));
-                    //extras.put("passBusinessImg", businessesImg.get(+position));
                     extras.putString("passBusinessLoc", businesessLoc.get(+position));
                     extras.putDouble("passBusinessDist", businesessDist.get(+position));
+
+                    extras.putString("passBusinessPrice", businesessPrice.get(+position));
+                    extras.putDouble("passBusinessRating", businesessRating.get(+position));
+                    extras.putInt("passBusinessReviewCnt", businesessReviewCnt.get(+position));
                     intent.putExtras(extras);
                     startActivity(intent);
                 }
