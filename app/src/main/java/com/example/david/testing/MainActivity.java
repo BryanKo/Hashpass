@@ -72,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 //        Button currentActive = (Button) findViewById(R.id.button15);
 //        Button currentIndoor = (Button) findViewById(R.id.button16);
 
+        // TESTING
+        Button buttontest = (Button) findViewById(R.id.testbutton);
+
         final TextView weather_print = (TextView) findViewById(R.id.textView_Weather);
 
         final RequestBuilder weather = new RequestBuilder();
@@ -165,6 +168,23 @@ public class MainActivity extends AppCompatActivity {
                 weather_print.setText("failure to access weather");
             }
         });
+
+        // TESTING
+        buttontest.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+                Intent intent = new Intent(MainActivity.this, foodCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", currWeather);
+                extras.putDoubleArray("passCurrTemp", currTemp);
+                extras.putDouble("passCurrLat", axx);
+                extras.putDouble("passCurrLng", ayy);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+
 
 //        currentFood.setOnClickListener(new View.OnClickListener(){
 //            @Override
