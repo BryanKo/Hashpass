@@ -20,7 +20,11 @@ public class businessInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_current);
 
-        TextView something = (TextView) findViewById(R.id.tvClickedBusinessName);
+        // Element declaration connecting to XML elements (c = clicked)
+        TextView cBusinessName = (TextView) findViewById(R.id.tvClickedBusinessName);
+        TextView cBusinessAddr = (TextView) findViewById(R.id.tvClickedBusinessAddr);
+        TextView cBusinessPrice = (TextView) findViewById(R.id.tvClickedBusinessPrice);
+        //TextView cBusinessRating = (TextView) findViewById(R.id.tvClickedBusinessRate);
 
         Bundle extras = getIntent().getExtras();
         String currbusinessImg = extras.getString("passBusinessImg");
@@ -34,7 +38,11 @@ public class businessInfo extends AppCompatActivity {
 
         Log.d("bundleinfo", currbusinessImg + " " + currBusinessName + " " + currBusinessLoc + " " + currBusinessPrice + " " + passBusinessRating + " " + passBusinessReviewCnt + String.valueOf(round((currBusinessDist / 1609.34), 2)).concat(" miles"));
 
-        something.setText(currBusinessName);
+        // Call pulled-API info into view
+        cBusinessName.setText(currBusinessName);
+        cBusinessAddr.setText(currBusinessLoc);
+        cBusinessPrice.setText(currBusinessPrice);
+        //cBusinessRating.setText(passBusinessRating);
     }
 
 
