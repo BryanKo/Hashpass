@@ -3,6 +3,8 @@ package com.example.david.testing;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -12,10 +14,13 @@ import java.math.RoundingMode;
  */
 
 public class businessInfo extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_businesses_current);
+        setContentView(R.layout.activity_info_current);
+
+        TextView something = (TextView) findViewById(R.id.tvClickedBusinessName);
 
         Bundle extras = getIntent().getExtras();
         String currbusinessImg = extras.getString("passBusinessImg");
@@ -28,7 +33,11 @@ public class businessInfo extends AppCompatActivity {
         int passBusinessReviewCnt = extras.getInt("passBusinessReviewCnt");
 
         Log.d("bundleinfo", currbusinessImg + " " + currBusinessName + " " + currBusinessLoc + " " + currBusinessPrice + " " + passBusinessRating + " " + passBusinessReviewCnt + String.valueOf(round((currBusinessDist / 1609.34), 2)).concat(" miles"));
+
+        something.setText(currBusinessName);
     }
+
+
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
