@@ -170,7 +170,8 @@ public class foodCurrent extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), businessesName.get(+position), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(foodCurrent.this, businessInfo.class);
                     Bundle extras = new Bundle();
-                    extras.putString("passBusinessImg", businessesImg.get(+position));
+                    extras.putString("passBusiness" +
+                            "", businessesImg.get(+position));
                     extras.putString("passBusinessName", businessesName.get(+position));
                     extras.putString("passBusinessLoc", businesessLoc.get(+position));
                     extras.putDouble("passBusinessDist", businesessDist.get(+position));

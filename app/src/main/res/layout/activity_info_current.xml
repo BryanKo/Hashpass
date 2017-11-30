@@ -3,4 +3,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivBusinessProfilePic"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:padding="15dp" />
+
+        <TextView
+            android:id="@+id/tvClickedBusinessName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ivBusinessProfilePic"
+            android:layout_alignStart="@+id/ivBusinessProfilePic"
+            android:layout_below="@+id/ivBusinessProfilePic"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Business Name Here"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tvClickedBusinessAddr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ivBusinessProfilePic"
+            android:layout_alignStart="@id/ivBusinessProfilePic"
+            android:layout_below="@+id/tvClickedBusinessName"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp"
+            android:text="Address here"
+            android:textSize="15sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/ivBusinessProfilePic"
+            android:layout_alignStart="@id/ivBusinessProfilePic"
+            android:layout_below="@id/tvClickedBusinessAddr"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvClickedBusinessPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Price"
+                android:textSize="12sp" />
+                <!--android:layout_alignLeft="@+id/ivBusinessProfilePic"-->
+                <!--android:layout_alignStart="@id/ivBusinessProfilePic"-->
+                <!--android:layout_below="@+id/tvClickedBusinessAddr"-->
+
+            <TextView
+                android:id="@+id/tvClickedBusinessRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Rating"
+                android:textSize="12sp"
+                android:padding="15dp"/>
+
+            <TextView
+                android:id="@+id/tvClickedBusinessReviewCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Review Count"
+                android:textSize="12sp"
+                android:padding="15dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvClickedBusinessDist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ivBusinessProfilePic"
+            android:layout_alignStart="@id/ivBusinessProfilePic"
+            android:layout_below="@+id/tvClickedBusinessReviewCount"
+            android:layout_marginTop="5dp"
+            android:text="Distance"
+            android:textSize="15sp"
+            />
+
+
+
+
+
+
+
+    </RelativeLayout>
+
 </LinearLayout>
