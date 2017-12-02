@@ -5,24 +5,24 @@ package com.example.david.testing;
  */
 
 public class DataModel {
+    private String[] futureWeatherList;
     private String timeText;
     private String foodText;
     private String barText;
     private String activeText;
     private String indoorText;
-    private String[] currWeather;
     private double[] currTemp;
     private double axx;
     private double ayy;
     private double passTime;
 
-    public DataModel(String timeText, String foodText, String barText, String activeText, String indoorText, String[] currWeather, double[] currTemp, double axx, double ayy, double passTime){
+    public DataModel(String timeText, String foodText, String barText, String activeText, String indoorText, String[] futureWeatherList, double[] currTemp, double axx, double ayy, double passTime){
         this.timeText = timeText;
         this.foodText = foodText;
         this.barText = barText;
         this.activeText = activeText;
         this.indoorText = indoorText;
-        this.currWeather = currWeather;
+        this.futureWeatherList = futureWeatherList;
         this.currTemp = currTemp;
         this.axx = axx;
         this.ayy = ayy;
@@ -68,13 +68,11 @@ public class DataModel {
         this.indoorText = indoorText;
     }
 
-    public String[] getCurrWeather() {
-        return currWeather;
+    public String[] getFutureWeatherList() {
+        return futureWeatherList;
     }
 
-    public void setCurrWeather(String[] currWeather){
-        this.currWeather = currWeather;
-    }
+    public void setFutureWeatherList(String[] currWeather){ this.futureWeatherList = futureWeatherList; }
 
     public double[] getCurrTemp() {
         return currTemp;

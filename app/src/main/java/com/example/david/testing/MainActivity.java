@@ -17,14 +17,17 @@ import com.johnhiott.darkskyandroidlib.RequestBuilder;
 import com.johnhiott.darkskyandroidlib.models.Request;
 import com.johnhiott.darkskyandroidlib.models.WeatherResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         final String[] currWeather = new String[1];
         final double[] currTemp = new double[1];
         final String[] currIcon = new String[1];
+        final List<String> futureWeatherList = new ArrayList<>();
+        final List<String> futureTempList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -100,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject current = object.getJSONObject("currently");
                             //Log.d("Current Information",current.toString());
 
+                            JSONObject future = object.getJSONObject("hourly");
+                            Log.d("futureInfo",future.toString());
+
                             int temp = current.getInt("temperature");
                             currTemp[0] = temp;
                             Log.d("Temperature:", " " + temp);
@@ -116,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
                             String summary = current.getString("summary");
                             currWeather[0] = summary;
-                            Log.d("Summary",summary);
+                            //Log.d("Summary",summary);
 
                             if (summary.equals("Clear")) {
                                 System.out.println("Temperature is currently clear");
@@ -127,7 +135,18 @@ public class MainActivity extends AppCompatActivity {
 
                             String icon = current.getString("icon");
                             currIcon[0] = icon;
-                            Log.d("Icon",icon);
+                            //Log.d("Icon",icon);
+
+                            JSONArray futureData = future.getJSONArray("data");
+                            for (int i = 0; i < futureData.length(); i++) {
+                                futureWeatherList.add(futureData.getJSONObject(i).getString("summary"));
+                                futureTempList.add(futureData.getJSONObject(i).getString("temperature"));
+                            }
+                            Log.d("futureData", String.valueOf(futureData));
+                            Log.d("futureDataWeather", Arrays.toString(futureWeatherList.toArray()));
+                            Log.d("futureDataTemp", Arrays.toString(futureTempList.toArray()));
+                            Log.d("futureDataWeatherTime", futureWeatherList.get(1));
+                            Log.d("futureDataTempTime", futureTempList.get(1));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -251,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
         Date nowHour = calendar.getTime();
         double passTime = nowHour.getTime()/1000L;
-        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather, currTemp, axx, ayy, passTime));
+        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather , currTemp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);
         Date oneHour = calendar.getTime();
         passTime = oneHour.getTime()/1000L;

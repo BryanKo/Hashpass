@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.yelp.fusion.client.connection.YelpFusionApi;
 import com.yelp.fusion.client.connection.YelpFusionApiFactory;
@@ -60,29 +59,35 @@ public class foodCurrent extends AppCompatActivity {
         //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
         Log.d("temperature", String.valueOf(currTemp[0]));
         Log.d("weather", String.valueOf(currWeather[0]));
+        Log.d("currTimeFood", String.valueOf(Double.valueOf(currTime).longValue()));
 
-
-        if (currTemp[0] < 60.0 && currWeather[0].equalsIgnoreCase("Clear")) {
+/*        if (currTemp[0] > 30.0 && (currWeather[0].equalsIgnoreCase("Partly Cloudy") || currWeather[0].equalsIgnoreCase("rain"))) {
             Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": True");
         } else {
             Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": False");
-        }
+        }*/
 
 
         apiFactory = new YelpFusionApiFactory();
-       if (currTemp[0] < 70 && currWeather[0].equalsIgnoreCase("Partly Cloudy")) {
+        if (currTemp[0] > 30 && (currWeather[0].equalsIgnoreCase("clear") ||
+               currWeather[0].equalsIgnoreCase("rain") ||
+               currWeather[0].equalsIgnoreCase("fog") ||
+               currWeather[0].equalsIgnoreCase("cloudy") ||
+               currWeather[0].equalsIgnoreCase("wind") ||
+               currWeather[0].equalsIgnoreCase("partly cloudy")
+        )) {
             try {
                 // Api call with client id and client secret id
                 YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
 
                 // Hashmap to store parameters
                 Map<String, String> params = new HashMap<>();
-                params.put("term", "food");
+                params.put("term", "restaurants");
                 params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
-                //params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found (will remove when open_at is implemented
-                params.put("open_at", String.valueOf(currTime));                  // for future when david pushes work to masters
+                // params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found (will remove when open_at is implemented
+                params.put("open_at", String.valueOf(Double.valueOf(currTime).longValue()));
                 params.put("limit", "50");
 
                 Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
@@ -92,12 +97,6 @@ public class foodCurrent extends AppCompatActivity {
 
                 Business business = businesses.get(businessIndex);
                 allBusinesses = new ArrayList<>();
-
-//            businessName.setText(business.getName());
-//            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
-//            businessRating.setText(String.valueOf(business.getRating()));
-//            businessPrice.setText(business.getPrice());
-//            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -108,11 +107,12 @@ public class foodCurrent extends AppCompatActivity {
 
                 // Hashmap to store parameters
                 Map<String, String> params = new HashMap<>();
-                params.put("term", "chinese food");
+                params.put("term", "fast food");
                 params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
-                params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
+                //params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
+                params.put("open_at", String.valueOf(Double.valueOf(currTime).longValue()));
                 params.put("limit", "50");
 
                 Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
@@ -134,16 +134,6 @@ public class foodCurrent extends AppCompatActivity {
         }
         Log.d("list", String.valueOf(allBusinesses.size()));
 
-/*        for (int i=0; i < allBusinesses.size(); i++) {
-            businessesName.add(allBusinesses.get(i).getName());
-            businessesImg.add(allBusinesses.get(i).getImageUrl());
-            businesessLoc.add((allBusinesses.get(i).getLocation().getAddress1() + ", " +
-                    allBusinesses.get(i).getLocation().getCity() + ", " +
-                    allBusinesses.get(i).getLocation().getState() + " " +
-                    allBusinesses.get(i).getLocation().getZipCode()));
-            businesessDist.add(allBusinesses.get(i).getDistance());
-        }*/
-
         for (int i=0; i < 5; i++) {
             int low = 0;
             int high = allBusinesses.size();
@@ -160,7 +150,7 @@ public class foodCurrent extends AppCompatActivity {
             businesessRating.add(allBusinesses.get(randNum).getRating());
             businesessReviewCnt.add(allBusinesses.get(randNum).getReviewCount());
         }
-        Log.d("businessImg", businessesImg.get(2));
+        //Log.d("businessImg", businessesImg.get(2));
 
         businessListView adapter = new businessListView(this, businessesImg, businessesName, businesessLoc, businesessDist);
         businessList.setAdapter(adapter);
@@ -169,7 +159,7 @@ public class foodCurrent extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(businessesName != null) {
-                    Toast.makeText(getApplicationContext(), businessesName.get(+position), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), businessesName.get(+position), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(foodCurrent.this, businessInfo.class);
                     Bundle extras = new Bundle();
                     extras.putString("passBusinessImg", businessesImg.get(+position));

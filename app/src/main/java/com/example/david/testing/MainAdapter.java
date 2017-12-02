@@ -76,7 +76,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         holder.mBar.setText(dataModel.getBarText());
         holder.mActive.setText(dataModel.getActiveText());
         holder.mIndoor.setText(dataModel.getIndoorText());
-        holder.mCurrWeather = dataModel.getCurrWeather();
+        holder.mCurrWeather = dataModel.getFutureWeatherList();
         holder.mCurrTemp = dataModel.getCurrTemp();
         holder.mAxx = dataModel.getAxx();
         holder.mAyy = dataModel.getAyy();
@@ -110,6 +110,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
                 extras.putDoubleArray("passCurrTemp", holder.mCurrTemp);
                 extras.putDouble("passCurrLat", holder.mAxx);
                 extras.putDouble("passCurrLng", holder.mAyy);
+                extras.putDouble("passCurrTime", holder.mPassTime);
                 intent.putExtras(extras);
                 context.startActivity(intent);
             }
@@ -124,6 +125,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
                 extras.putDoubleArray("passCurrTemp", holder.mCurrTemp);
                 extras.putDouble("passCurrLat", holder.mAxx);
                 extras.putDouble("passCurrLng", holder.mAyy);
+                extras.putDouble("passCurrTime", holder.mPassTime);
                 intent.putExtras(extras);
                 context.startActivity(intent);
             }
@@ -138,6 +140,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
                 extras.putDoubleArray("passCurrTemp", holder.mCurrTemp);
                 extras.putDouble("passCurrLat", holder.mAxx);
                 extras.putDouble("passCurrLng", holder.mAyy);
+                extras.putDouble("passCurrTime", holder.mPassTime);
                 intent.putExtras(extras);
                 context.startActivity(intent);
             }
