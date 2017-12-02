@@ -273,13 +273,16 @@ public class MainActivity extends AppCompatActivity {
 //            i++;
 //        }
 
+        allDataArray.add (new DataModel("Now", "Food", currWeather, currTemp, axx, ayy));
+        calendar.add(Calendar.HOUR, 1);
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //mAdapter = new com.example.david.testing.MainAdapter(allDataArray);
-        mAdapter = new MainAdapter();
+        mAdapter = new MainAdapter(allDataArray);
+        //mAdapter = new MainAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
     }
