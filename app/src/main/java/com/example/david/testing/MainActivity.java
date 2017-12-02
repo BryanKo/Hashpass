@@ -72,9 +72,6 @@ public class MainActivity extends AppCompatActivity {
 //        Button currentActive = (Button) findViewById(R.id.button15);
 //        Button currentIndoor = (Button) findViewById(R.id.button16);
 
-        // TESTING
-        Button buttontest = (Button) findViewById(R.id.testbutton);
-
         final TextView weather_print = (TextView) findViewById(R.id.textView_Weather);
 
         final RequestBuilder weather = new RequestBuilder();
@@ -169,22 +166,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // TESTING
-        buttontest.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-                Intent intent = new Intent(MainActivity.this, foodCurrent.class);
-                Bundle extras = new Bundle();
-                extras.putStringArray("passCurrWeather", currWeather);
-                extras.putDoubleArray("passCurrTemp", currTemp);
-                extras.putDouble("passCurrLat", axx);
-                extras.putDouble("passCurrLng", ayy);
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });
-
 
 //        currentFood.setOnClickListener(new View.OnClickListener(){
 //            @Override
@@ -273,13 +254,24 @@ public class MainActivity extends AppCompatActivity {
 //            i++;
 //        }
 
+        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather, currTemp, axx, ayy));
+        calendar.add(Calendar.HOUR, 1);
+        Date oneHour = calendar.getTime();
+        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", currWeather, currTemp, axx, ayy));
+        calendar.add(Calendar.HOUR, 1);
+        Date twoHour = calendar.getTime();
+        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", currWeather, currTemp, axx, ayy));
+        calendar.add(Calendar.HOUR, 1);
+        Date threeHour = calendar.getTime();
+        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", currWeather, currTemp, axx, ayy));
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //mAdapter = new com.example.david.testing.MainAdapter(allDataArray);
-        mAdapter = new MainAdapter();
+        mAdapter = new MainAdapter(allDataArray);
+        //mAdapter = new MainAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
     }

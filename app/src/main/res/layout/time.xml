@@ -9,7 +9,7 @@
         android:id="@+id/time_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="holder"/>
+        android:text="time_holder"/>
 
 
     <ScrollView
@@ -25,51 +25,29 @@
 
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/foodButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder" />
+                android:text="buttonHolder_Food"
+                android:padding="45dp"/>
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/barButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder" />
+                android:text="buttonHolder_Bar"
+                android:padding="45dp"/>
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/activeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder" />
+                android:text="buttonHolder_Active"
+                android:padding="45dp"/>
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/indoorButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder" />
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="buttonHolder" />
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="buttonHolder" />
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="buttonHolder" />
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="buttonHolder" />
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="buttonHolder" />
+                android:text="buttonHolder_Indoor"
+                android:padding="45dp"/>
         </LinearLayout>
 
     </ScrollView>
