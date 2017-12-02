@@ -207,19 +207,19 @@ public class MainActivity extends AppCompatActivity {
         passTime = oneHour.getTime()/1000L;
 
         // add the next hours data to the recyclerlist
-        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", future1Weather, future1Temp, axx, ayy, passTime));
+        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants", "Bars", "Active", "Indoor", future1Weather, future1Temp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);//add an hour to the current time
         Date twoHour = calendar.getTime();
         passTime = twoHour.getTime()/1000L;
 
         // add the 2nd next hours data to the recyclerlist
-        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", future2Weather, future2Temp, axx, ayy, passTime));
+        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants", "Bars", "Active", "Indoor", future2Weather, future2Temp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1); //add an hour to the previous time
         Date threeHour = calendar.getTime();
         passTime = threeHour.getTime()/1000L;
 
         // add the 3rd next hours data to the recyclerlist
-        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", future3Weather, future3Temp, axx, ayy, passTime));
+        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants", "Bars", "Active", "Indoor", future3Weather, future3Temp, axx, ayy, passTime));
 
         Log.d("passTimeHour", String.valueOf(passTime));
 
