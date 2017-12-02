@@ -1,16 +1,12 @@
 package com.example.david.testing;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ArrayAdapter;
+import android.util.Log;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -253,18 +249,23 @@ public class MainActivity extends AppCompatActivity {
 //            mDataSet.add (calendar.get(Calendar.HOUR)+""+calendar.get(Calendar.AM_PM));
 //            i++;
 //        }
-
-        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather, currTemp, axx, ayy));
+        Date nowHour = calendar.getTime();
+        double passTime = nowHour.getTime()/1000L;
+        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather, currTemp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);
         Date oneHour = calendar.getTime();
-        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", currWeather, currTemp, axx, ayy));
+        passTime = oneHour.getTime()/1000L;
+        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", currWeather, currTemp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);
         Date twoHour = calendar.getTime();
-        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", currWeather, currTemp, axx, ayy));
+        passTime = twoHour.getTime()/1000L;
+        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", currWeather, currTemp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);
         Date threeHour = calendar.getTime();
-        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", currWeather, currTemp, axx, ayy));
+        passTime = threeHour.getTime()/1000L;
+        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", currWeather, currTemp, axx, ayy, passTime));
 
+        Log.d("passTimeHour", String.valueOf(passTime));
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);

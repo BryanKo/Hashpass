@@ -56,6 +56,7 @@ public class foodCurrent extends AppCompatActivity {
         double[] currTemp = extras.getDoubleArray("passCurrTemp");
         double currLat = extras.getDouble("passCurrLat");
         double currLng = extras.getDouble("passCurrLng");
+        double currTime = extras.getDouble("passCurrTime");
         //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
         Log.d("temperature", String.valueOf(currTemp[0]));
         Log.d("weather", String.valueOf(currWeather[0]));
@@ -80,8 +81,8 @@ public class foodCurrent extends AppCompatActivity {
                 params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
-                params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found (will remove when open_at is implemented
-                //params.put("open_at", );                  // for future when david pushes work to masters
+                //params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found (will remove when open_at is implemented
+                params.put("open_at", String.valueOf(currTime));                  // for future when david pushes work to masters
                 params.put("limit", "50");
 
                 Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);

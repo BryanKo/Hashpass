@@ -1,4 +1,5 @@
 package com.example.david.testing;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -79,6 +80,9 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         holder.mCurrTemp = dataModel.getCurrTemp();
         holder.mAxx = dataModel.getAxx();
         holder.mAyy = dataModel.getAyy();
+        holder.mPassTime = dataModel.getPassTime();
+
+        Log.d("passTime", String.valueOf(holder.mPassTime));
 
         holder.mFood.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -90,6 +94,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
                 extras.putDoubleArray("passCurrTemp", holder.mCurrTemp);
                 extras.putDouble("passCurrLat", holder.mAxx);
                 extras.putDouble("passCurrLng", holder.mAyy);
+                extras.putDouble("passCurrTime", holder.mPassTime);
                 intent.putExtras(extras);
                 context.startActivity(intent);
                // Log.d("tag", "button pressed");
@@ -157,6 +162,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         public double[] mCurrTemp;
         public double mAxx;
         public double mAyy;
+        public double mPassTime;
 
         public ViewHolder(View itemView) {
             super(itemView);
