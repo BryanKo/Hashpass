@@ -23,25 +23,13 @@ import java.util.Date;
 class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
 
     private ArrayList<DataModel> allDataArray;
-    //Get Calendar and Date to display NOW and the next 5 hours;
+    //Get Calendar and Date to display NOW and the next 3 hours;
+    // I (david) am pretty sure Calendar, DateFormat ,and Date are not needed here
+    // as they are already used in MainActivity
+    // but I will keep them here until I figure it out (12/2/17)
     Calendar calendar = Calendar.getInstance();
     DateFormat dateFormat = new SimpleDateFormat("hh a");
     Date date = new Date();
-
-//    public MainAdapter(){
-//        allDataArray = new ArrayList<DataModel>(5);
-//
-//        allDataArray.add (new DataModel("Now", "Food"));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date oneHour = calendar.getTime();
-//        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Food2"));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date twoHour = calendar.getTime();
-//        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Food3"));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date threeHour = calendar.getTime();
-//        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Food4"));
-//    }
 
     public MainAdapter(ArrayList<DataModel> allDataArray){
         this.allDataArray = allDataArray;

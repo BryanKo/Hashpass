@@ -4,7 +4,14 @@ package com.example.david.testing;
  * Created by David on 11/29/2017.
  */
 
-public class DataModel {
+/**
+ * DataModel is used to hold data when passed between MainActivity and MainAdapter, and vice versa
+ * It contains an array for the current weather, and current temp,
+ * Strings for current time, texts for the buttons (food, bar, active, and indoor),
+ * GPS axis for location and passTime, which I believe is the UNIX time to be used with
+ * the weather API to get temp and weather of various hours.
+*/
+ public class DataModel {
     private String[] currWeather;
     private String timeText;
     private String foodText;

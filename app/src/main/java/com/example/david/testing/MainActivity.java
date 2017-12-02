@@ -68,15 +68,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Calendar stuff
+        //Get Calendar and Date to display NOW and the next 3 hours;
         Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("hh a");
         Date date = new Date();
         int timeOfDay = calendar.get(Calendar.HOUR_OF_DAY);
-
-//        Button currentFood = (Button) findViewById(R.id.button13);
-//        Button currentBar = (Button) findViewById(R.id.button14);
-//        Button currentActive = (Button) findViewById(R.id.button15);
-//        Button currentIndoor = (Button) findViewById(R.id.button16);
 
         final TextView weather_print = (TextView) findViewById(R.id.textView_Weather);
 
@@ -196,107 +192,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        currentFood.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//
-//                Intent intent = new Intent(MainActivity.this, foodCurrent.class);
-//                Bundle extras = new Bundle();
-//                extras.putStringArray("passCurrWeather", currWeather);
-//                extras.putDoubleArray("passCurrTemp", currTemp);
-//                extras.putDouble("passCurrLat", axx);
-//                extras.putDouble("passCurrLng", ayy);
-//                intent.putExtras(extras);
-//                startActivity(intent);
-//            }
-//        });
-//        currentBar.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//
-//                Intent intent = new Intent(MainActivity.this, barCurrent.class);
-//                Bundle extras = new Bundle();
-//                extras.putStringArray("passCurrWeather", currWeather);
-//                extras.putDoubleArray("passCurrTemp", currTemp);
-//                extras.putDouble("passCurrLat", axx);
-//                extras.putDouble("passCurrLng", ayy);
-//                intent.putExtras(extras);
-//                startActivity(intent);
-//            }
-//        });
-//        currentActive.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//
-//                Intent intent = new Intent(MainActivity.this, activeCurrent.class);
-//                Bundle extras = new Bundle();
-//                extras.putStringArray("passCurrWeather", currWeather);
-//                extras.putDoubleArray("passCurrTemp", currTemp);
-//                extras.putDouble("passCurrLat", axx);
-//                extras.putDouble("passCurrLng", ayy);
-//                intent.putExtras(extras);
-//                startActivity(intent);
-//            }
-//        });
-//        currentIndoor.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//
-//                Intent intent = new Intent(MainActivity.this, indoorCurrent.class);
-//                Bundle extras = new Bundle();
-//                extras.putStringArray("passCurrWeather", currWeather);
-//                extras.putDoubleArray("passCurrTemp", currTemp);
-//                extras.putDouble("passCurrLat", axx);
-//                extras.putDouble("passCurrLng", ayy);
-//                intent.putExtras(extras);
-//                startActivity(intent);
-//            }
-//        });
 
-        //Recycler view*************************************************************************8
-        allDataArray = new ArrayList<>();
-        // mButtonSet = new ArrayList<>();
-
-//        for (int i = 0; i < 5; i++) {
-//            mDataSet.add (calendar.get(Calendar.HOUR+i)+""+calendar.get(Calendar.AM_PM));
-//        }
-//        allDataArray.add (new DataModel("Now", "Food"));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date oneHour = calendar.getTime();
-//        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Food2"));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date twoHour = calendar.getTime();
-//        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Food3"));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date threeHour = calendar.getTime();
-//        mDataSet.add (dateFormat.format(threeHour));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date fourHour = calendar.getTime();
-//        mDataSet.add (dateFormat.format(fourHour));
-//        calendar.add(Calendar.HOUR, 1);
-//        Date fiveHour = calendar.getTime();
-//        mDataSet.add (dateFormat.format(fiveHour));
-//        int i = 0;
-//
-//        while (i<5){
-//            mDataSet.add (calendar.get(Calendar.HOUR)+""+calendar.get(Calendar.AM_PM));
-//            i++;
-//        }
+        // Recycler view*************************************************************************
+        // RecyclerView displays current and next hours, and the list of buttons for suggested activities.
+        allDataArray = new ArrayList<>(); //create Array list
 
         Date nowHour = calendar.getTime();
         double passTime = nowHour.getTime()/1000L;
+
+        // add the current hours data to the recyclerlist
         allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather, currTemp, axx, ayy, passTime));
-        calendar.add(Calendar.HOUR, 1);
+        calendar.add(Calendar.HOUR, 1); //add an hour to the current time
         Date oneHour = calendar.getTime();
         passTime = oneHour.getTime()/1000L;
+
+        // add the next hours data to the recyclerlist
         allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", future1Weather, future1Temp, axx, ayy, passTime));
-        calendar.add(Calendar.HOUR, 1);
+        calendar.add(Calendar.HOUR, 1);//add an hour to the current time
         Date twoHour = calendar.getTime();
         passTime = twoHour.getTime()/1000L;
+
+        // add the 2nd next hours data to the recyclerlist
         allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", future2Weather, future2Temp, axx, ayy, passTime));
-        calendar.add(Calendar.HOUR, 1);
+        calendar.add(Calendar.HOUR, 1); //add an hour to the previous time
         Date threeHour = calendar.getTime();
         passTime = threeHour.getTime()/1000L;
+
+        // add the 3rd next hours data to the recyclerlist
         allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", future3Weather, future3Temp, axx, ayy, passTime));
 
         Log.d("passTimeHour", String.valueOf(passTime));
