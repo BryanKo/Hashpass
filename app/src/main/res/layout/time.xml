@@ -28,22 +28,26 @@
                 android:id="@+id/foodButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder_Food" />
+                android:text="buttonHolder_Food"
+                android:padding="45dp"/>
             <Button
                 android:id="@+id/barButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder_Bar" />
+                android:text="buttonHolder_Bar"
+                android:padding="45dp"/>
             <Button
                 android:id="@+id/activeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder_Active" />
+                android:text="buttonHolder_Active"
+                android:padding="45dp"/>
             <Button
                 android:id="@+id/indoorButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="buttonHolder_Indoor" />
+                android:text="buttonHolder_Indoor"
+                android:padding="45dp"/>
         </LinearLayout>
 
     </ScrollView>
