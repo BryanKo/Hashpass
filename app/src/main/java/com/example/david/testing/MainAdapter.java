@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -60,10 +61,10 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     public void onBindViewHolder(final MainAdapter.ViewHolder holder, int position) {
         DataModel dataModel = allDataArray.get(position);
         holder.mTime.setText(dataModel.getTimeText());
-        holder.mFood.setText(dataModel.getFoodText());
-        holder.mBar.setText(dataModel.getBarText());
-        holder.mActive.setText(dataModel.getActiveText());
-        holder.mIndoor.setText(dataModel.getIndoorText());
+        //holder.mFood.setText(dataModel.getFoodText());
+        //holder.mBar.setText(dataModel.getBarText());
+        //holder.mActive.setText(dataModel.getActiveText());
+        //holder.mIndoor.setText(dataModel.getIndoorText());
         holder.mCurrWeather = dataModel.getCurrWeather();
         holder.mCurrTemp = dataModel.getCurrTemp();
         holder.mAxx = dataModel.getAxx();
@@ -145,10 +146,10 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mTime;
-        public Button mFood;
-        public Button mBar;
-        public Button mActive;
-        public Button mIndoor;
+        public ImageButton mFood;
+        public ImageButton mBar;
+        public ImageButton mActive;
+        public ImageButton mIndoor;
         public String[] mCurrWeather;
         public double[] mCurrTemp;
         public double mAxx;
@@ -159,10 +160,10 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
             super(itemView);
             Context context = itemView.getContext();
             mTime = (TextView) itemView.findViewById(R.id.time_time);
-            mFood = (Button) itemView.findViewById(R.id.foodButton);
-            mBar = (Button) itemView.findViewById(R.id.barButton);
-            mActive = (Button) itemView.findViewById(R.id.activeButton);
-            mIndoor = (Button) itemView.findViewById(R.id.indoorButton);
+            mFood = (ImageButton) itemView.findViewById(R.id.foodButton);
+            mBar = (ImageButton) itemView.findViewById(R.id.barButton);
+            mActive = (ImageButton) itemView.findViewById(R.id.activeButton);
+            mIndoor = (ImageButton) itemView.findViewById(R.id.indoorButton);
         }
     }
 }
