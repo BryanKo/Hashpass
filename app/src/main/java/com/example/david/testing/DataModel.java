@@ -5,17 +5,18 @@ package com.example.david.testing;
  */
 
 public class DataModel {
+    private String[] currWeather;
     private String timeText;
     private String foodText;
     private String barText;
     private String activeText;
     private String indoorText;
-    private String[] currWeather;
     private double[] currTemp;
     private double axx;
     private double ayy;
+    private double passTime;
 
-    public DataModel(String timeText, String foodText, String barText, String activeText, String indoorText, String[] currWeather, double[] currTemp, double axx, double ayy){
+    public DataModel(String timeText, String foodText, String barText, String activeText, String indoorText, String[] currWeather, double[] currTemp, double axx, double ayy, double passTime){
         this.timeText = timeText;
         this.foodText = foodText;
         this.barText = barText;
@@ -25,6 +26,7 @@ public class DataModel {
         this.currTemp = currTemp;
         this.axx = axx;
         this.ayy = ayy;
+        this.passTime = passTime;
     }
 
     public String getTimeText(){
@@ -70,9 +72,7 @@ public class DataModel {
         return currWeather;
     }
 
-    public void setCurrWeather(String[] currWeather){
-        this.currWeather = currWeather;
-    }
+    public void setCurrWeather(String[] currWeather){ this.currWeather = currWeather; }
 
     public double[] getCurrTemp() {
         return currTemp;
@@ -90,11 +90,12 @@ public class DataModel {
         this.axx = axx;
     }
 
-    public  double getAyy(){
-        return ayy;
-    }
+    public  double getAyy(){ return ayy; }
 
-    public void setAyy(double ayy){
-        this.ayy = ayy;
-    }
+    public void setAyy(double ayy){ this.ayy = ayy; }
+
+    public void setPassTime(double passTime){ this.passTime = passTime; }
+
+    public  double getPassTime(){ return passTime; }
+
 }

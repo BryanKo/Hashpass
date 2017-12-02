@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.yelp.fusion.client.connection.YelpFusionApi;
 import com.yelp.fusion.client.connection.YelpFusionApiFactory;
@@ -34,6 +33,10 @@ public class activeCurrent extends AppCompatActivity {
     final ArrayList<String> businessesName = new ArrayList<>();
     final ArrayList<String> businesessLoc = new ArrayList<>();
     final ArrayList<Double> businesessDist = new ArrayList<>();
+
+    final ArrayList<String> businesessPrice = new ArrayList<>();
+    final ArrayList<Double> businesessRating = new ArrayList<>();
+    final ArrayList<Integer> businesessReviewCnt = new ArrayList<>();
     int businessIndex = 0;
     Random r = new Random();
 
@@ -52,20 +55,14 @@ public class activeCurrent extends AppCompatActivity {
         double[] currTemp = extras.getDoubleArray("passCurrTemp");
         double currLat = extras.getDouble("passCurrLat");
         double currLng = extras.getDouble("passCurrLng");
+        double currTime = extras.getDouble("passCurrTime");
         //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
         Log.d("temperature", String.valueOf(currTemp[0]));
         Log.d("weather", String.valueOf(currWeather[0]));
-
-
-        if (currTemp[0] < 60.0 && currWeather[0].equalsIgnoreCase("Clear")) {
-            Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": True");
-        } else {
-            Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": False");
-        }
-
+        Log.d("currTimeFood", String.valueOf(Double.valueOf(currTime).longValue()));
 
         apiFactory = new YelpFusionApiFactory();
-        if (currTemp[0] < 70 && currWeather[0].equalsIgnoreCase("Partly Cloudy")) {
+        if (currTemp[0] > 70 && currWeather[0].equalsIgnoreCase("clear")) {
             try {
                 // Api call with client id and client secret id
                 YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
@@ -73,6 +70,36 @@ public class activeCurrent extends AppCompatActivity {
                 // Hashmap to store parameters
                 Map<String, String> params = new HashMap<>();
                 params.put("term", "active life");
+                params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
+                params.put("latitude", String.valueOf(currLat));
+                params.put("longitude", String.valueOf(currLng));
+                // params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
+                params.put("open_at", String.valueOf(Double.valueOf(currTime).longValue()));
+                params.put("limit", "50");
+
+                Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
+                SearchResponse searchResponse = call.execute().body();
+
+                businesses = searchResponse.getBusinesses();
+
+                Business business = businesses.get(businessIndex);
+                allBusinesses = new ArrayList<>();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (currTemp[0] <= 70.0 &&
+                currTemp[0] >= 40 && (currWeather[0].equalsIgnoreCase("Clear") ||
+                currWeather[0].equalsIgnoreCase("partly cloudy") ||
+                currWeather[0].equalsIgnoreCase("cloudy") ||
+                currWeather[0].equalsIgnoreCase("wind")
+        )) {
+            try {
+                // Api call with client id and client secret id
+                YelpFusionApi yelpFusionApi = apiFactory.createAPI(appId, appSecret);
+
+                // Hashmap to store parameters
+                Map<String, String> params = new HashMap<>();
+                params.put("term", "arts & entertainment");
                 params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
@@ -86,12 +113,6 @@ public class activeCurrent extends AppCompatActivity {
 
                 Business business = businesses.get(businessIndex);
                 allBusinesses = new ArrayList<>();
-
-//            businessName.setText(business.getName());
-//            businessLoc.setText(business.getLocation().getAddress1() + ", " + business.getLocation().getCity() + ", " + business.getLocation().getState() + " " + business.getLocation().getZipCode());
-//            businessRating.setText(String.valueOf(business.getRating()));
-//            businessPrice.setText(business.getPrice());
-//            businessDist.setText(String.valueOf(round((business.getDistance() / 1609.34), 2)).concat(" miles"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -102,7 +123,7 @@ public class activeCurrent extends AppCompatActivity {
 
                 // Hashmap to store parameters
                 Map<String, String> params = new HashMap<>();
-                params.put("term", "active life");
+                params.put("term", "beauty & spas");
                 params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
@@ -128,16 +149,6 @@ public class activeCurrent extends AppCompatActivity {
         }
         Log.d("list", String.valueOf(allBusinesses.size()));
 
-/*        for (int i=0; i < allBusinesses.size(); i++) {
-            businessesName.add(allBusinesses.get(i).getName());
-            businessesImg.add(allBusinesses.get(i).getImageUrl());
-            businesessLoc.add((allBusinesses.get(i).getLocation().getAddress1() + ", " +
-                    allBusinesses.get(i).getLocation().getCity() + ", " +
-                    allBusinesses.get(i).getLocation().getState() + " " +
-                    allBusinesses.get(i).getLocation().getZipCode()));
-            businesessDist.add(allBusinesses.get(i).getDistance());
-        }*/
-
         for (int i=0; i < 5; i++) {
             int low = 0;
             int high = allBusinesses.size();
@@ -149,6 +160,10 @@ public class activeCurrent extends AppCompatActivity {
                     allBusinesses.get(randNum).getLocation().getState() + " " +
                     allBusinesses.get(randNum).getLocation().getZipCode()));
             businesessDist.add(allBusinesses.get(randNum).getDistance());
+
+            businesessPrice.add(allBusinesses.get(randNum).getPrice());
+            businesessRating.add(allBusinesses.get(randNum).getRating());
+            businesessReviewCnt.add(allBusinesses.get(randNum).getReviewCount());
         }
 
         businessListView adapter = new businessListView(this, businessesImg, businessesName, businesessLoc, businesessDist);
@@ -158,13 +173,17 @@ public class activeCurrent extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(businessesName != null) {
-                    Toast.makeText(getApplicationContext(), businessesName.get(+position), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), businessesName.get(+position), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(activeCurrent.this, businessInfo.class);
                     Bundle extras = new Bundle();
+                    extras.putString("passBusinessImg", businessesImg.get(+position));
                     extras.putString("passBusinessName", businessesName.get(+position));
-                    //extras.put("passBusinessImg", businessesImg.get(+position));
                     extras.putString("passBusinessLoc", businesessLoc.get(+position));
                     extras.putDouble("passBusinessDist", businesessDist.get(+position));
+
+                    extras.putString("passBusinessPrice", businesessPrice.get(+position));
+                    extras.putDouble("passBusinessRating", businesessRating.get(+position));
+                    extras.putInt("passBusinessReviewCnt", businesessReviewCnt.get(+position));
                     intent.putExtras(extras);
                     startActivity(intent);
                 }
