@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<DataModel> allDataArray;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //double axx= weatherCurrent.ax;
@@ -166,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
 //        currentFood.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View view){
@@ -253,14 +254,26 @@ public class MainActivity extends AppCompatActivity {
 //            i++;
 //        }
 
+        allDataArray.add (new DataModel("Now", "Food", currWeather, currTemp, axx, ayy));
+        calendar.add(Calendar.HOUR, 1);
+//        Date oneHour = calendar.getTime();
+//        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Food2"));
+//        calendar.add(Calendar.HOUR, 1);
+//        Date twoHour = calendar.getTime();
+//        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Food3"));
+//        calendar.add(Calendar.HOUR, 1);
+//        Date threeHour = calendar.getTime();
+//        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Food4"));
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //mAdapter = new com.example.david.testing.MainAdapter(allDataArray);
-        mAdapter = new MainAdapter();
+        mAdapter = new MainAdapter(allDataArray);
+        //mAdapter = new MainAdapter();
         mRecyclerView.setAdapter(mAdapter);
+
 
     }
 }
