@@ -24,30 +24,38 @@
             android:scrollbars="none">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/foodButton"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="buttonHolder_Food"
-                android:padding="45dp"/>
-            <Button
+                android:src="@drawable/restaurants"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"/>
+            <ImageButton
                 android:id="@+id/barButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="buttonHolder_Bar"
-                android:padding="45dp"/>
-            <Button
+                android:src="@drawable/bars"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
+            <ImageButton
                 android:id="@+id/activeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="buttonHolder_Active"
-                android:padding="45dp"/>
-            <Button
+                android:src="@drawable/activities"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
+            <ImageButton
                 android:id="@+id/indoorButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="buttonHolder_Indoor"
-                android:padding="45dp"/>
+                android:src="@drawable/indoor"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
         </LinearLayout>
 
     </ScrollView>
