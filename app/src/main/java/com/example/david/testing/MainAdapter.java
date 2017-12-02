@@ -71,13 +71,16 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     public void onBindViewHolder(final MainAdapter.ViewHolder holder, int position) {
         DataModel dataModel = allDataArray.get(position);
         holder.mTime.setText(dataModel.getTimeText());
-        holder.mBut.setText(dataModel.getButtonText());
+        holder.mFood.setText(dataModel.getFoodText());
+        holder.mBar.setText(dataModel.getBarText());
+        holder.mActive.setText(dataModel.getActiveText());
+        holder.mIndoor.setText(dataModel.getIndoorText());
         holder.mCurrWeather = dataModel.getCurrWeather();
         holder.mCurrTemp = dataModel.getCurrTemp();
         holder.mAxx = dataModel.getAxx();
         holder.mAyy = dataModel.getAyy();
 
-        holder.mBut.setOnClickListener(new View.OnClickListener(){
+        holder.mFood.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Context context = view.getContext();
@@ -89,7 +92,49 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
                 extras.putDouble("passCurrLng", holder.mAyy);
                 intent.putExtras(extras);
                 context.startActivity(intent);
-                Log.d("tag", "button pressed");
+               // Log.d("tag", "button pressed");
+            }
+        });
+        holder.mBar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Context context = view.getContext();
+                Intent intent = new Intent(context, barCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", holder.mCurrWeather);
+                extras.putDoubleArray("passCurrTemp", holder.mCurrTemp);
+                extras.putDouble("passCurrLat", holder.mAxx);
+                extras.putDouble("passCurrLng", holder.mAyy);
+                intent.putExtras(extras);
+                context.startActivity(intent);
+            }
+        });
+        holder.mActive.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Context context = view.getContext();
+                Intent intent = new Intent(context, activeCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", holder.mCurrWeather);
+                extras.putDoubleArray("passCurrTemp", holder.mCurrTemp);
+                extras.putDouble("passCurrLat", holder.mAxx);
+                extras.putDouble("passCurrLng", holder.mAyy);
+                intent.putExtras(extras);
+                context.startActivity(intent);
+            }
+        });
+        holder.mIndoor.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Context context = view.getContext();
+                Intent intent = new Intent(context, indoorCurrent.class);
+                Bundle extras = new Bundle();
+                extras.putStringArray("passCurrWeather", holder.mCurrWeather);
+                extras.putDoubleArray("passCurrTemp", holder.mCurrTemp);
+                extras.putDouble("passCurrLat", holder.mAxx);
+                extras.putDouble("passCurrLng", holder.mAyy);
+                intent.putExtras(extras);
+                context.startActivity(intent);
             }
         });
 
@@ -104,7 +149,10 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mTime;
-        public Button mBut;
+        public Button mFood;
+        public Button mBar;
+        public Button mActive;
+        public Button mIndoor;
         public String[] mCurrWeather;
         public double[] mCurrTemp;
         public double mAxx;
@@ -114,7 +162,10 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
             super(itemView);
             Context context = itemView.getContext();
             mTime = (TextView) itemView.findViewById(R.id.time_time);
-            mBut = (Button) itemView.findViewById(R.id.button);
+            mFood = (Button) itemView.findViewById(R.id.foodButton);
+            mBar = (Button) itemView.findViewById(R.id.barButton);
+            mActive = (Button) itemView.findViewById(R.id.activeButton);
+            mIndoor = (Button) itemView.findViewById(R.id.indoorButton);
         }
     }
 }

@@ -273,8 +273,16 @@ public class MainActivity extends AppCompatActivity {
 //            i++;
 //        }
 
-        allDataArray.add (new DataModel("Now", "Food", currWeather, currTemp, axx, ayy));
+        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather, currTemp, axx, ayy));
         calendar.add(Calendar.HOUR, 1);
+        Date oneHour = calendar.getTime();
+        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", currWeather, currTemp, axx, ayy));
+        calendar.add(Calendar.HOUR, 1);
+        Date twoHour = calendar.getTime();
+        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", currWeather, currTemp, axx, ayy));
+        calendar.add(Calendar.HOUR, 1);
+        Date threeHour = calendar.getTime();
+        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", currWeather, currTemp, axx, ayy));
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);

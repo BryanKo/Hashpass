@@ -6,15 +6,21 @@ package com.example.david.testing;
 
 public class DataModel {
     private String timeText;
-    private String buttonText;
+    private String foodText;
+    private String barText;
+    private String activeText;
+    private String indoorText;
     private String[] currWeather;
     private double[] currTemp;
     private double axx;
     private double ayy;
 
-    public DataModel(String timeText, String buttonText, String[] currWeather, double[] currTemp, double axx, double ayy){
+    public DataModel(String timeText, String foodText, String barText, String activeText, String indoorText, String[] currWeather, double[] currTemp, double axx, double ayy){
         this.timeText = timeText;
-        this.buttonText = buttonText;
+        this.foodText = foodText;
+        this.barText = barText;
+        this.activeText = activeText;
+        this.indoorText = indoorText;
         this.currWeather = currWeather;
         this.currTemp = currTemp;
         this.axx = axx;
@@ -29,12 +35,35 @@ public class DataModel {
         this.timeText = timeText;
     }
 
-    public String getButtonText(){
-        return buttonText;
+    public String getFoodText(){
+        return foodText;
     }
 
-    public void setButtonText (String buttonText){
-        this.buttonText = buttonText;
+    public void setFoodText (String foodText){
+        this.foodText = foodText;
+    }
+
+    public String getBarText(){
+        return barText;
+    }
+
+    public void setBarText (String barText){
+        this.barText = barText;
+    }
+    public String getActiveText(){
+        return activeText;
+    }
+
+    public void setActiveText (String activeText){
+        this.activeText = activeText;
+    }
+
+    public String getIndoorText(){
+        return indoorText;
+    }
+
+    public void setIndoorText (String indoorText){
+        this.indoorText = indoorText;
     }
 
     public String[] getCurrWeather() {
