@@ -76,7 +76,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         holder.mBar.setText(dataModel.getBarText());
         holder.mActive.setText(dataModel.getActiveText());
         holder.mIndoor.setText(dataModel.getIndoorText());
-        holder.mCurrWeather = dataModel.getFutureWeatherList();
+        holder.mCurrWeather = dataModel.getCurrWeather();
         holder.mCurrTemp = dataModel.getCurrTemp();
         holder.mAxx = dataModel.getAxx();
         holder.mAyy = dataModel.getAyy();

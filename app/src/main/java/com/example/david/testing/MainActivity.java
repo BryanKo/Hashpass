@@ -24,7 +24,6 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -53,10 +52,16 @@ public class MainActivity extends AppCompatActivity {
         final double axx = 36.9741;
         final double ayy = -122.0308;
         final String[] currWeather = new String[1];
+        final String[] future1Weather = new String[1];
+        final String[] future2Weather = new String[1];
+        final String[] future3Weather = new String[1];
         final double[] currTemp = new double[1];
+        final double[] future1Temp = new double[1];
+        final double[] future2Temp = new double[1];
+        final double[] future3Temp = new double[1];
         final String[] currIcon = new String[1];
         final List<String> futureWeatherList = new ArrayList<>();
-        final List<String> futureTempList = new ArrayList<>();
+        final List<Double> futureTempList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         ForecastApi.create("4fb2c715ea744173c72290437de1c776");
         final String apiKey = "4fb2c715ea744173c72290437de1c776";
@@ -140,13 +145,19 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray futureData = future.getJSONArray("data");
                             for (int i = 0; i < futureData.length(); i++) {
                                 futureWeatherList.add(futureData.getJSONObject(i).getString("summary"));
-                                futureTempList.add(futureData.getJSONObject(i).getString("temperature"));
+                                futureTempList.add(Double.valueOf(futureData.getJSONObject(i).getString("temperature")));
                             }
-                            Log.d("futureData", String.valueOf(futureData));
-                            Log.d("futureDataWeather", Arrays.toString(futureWeatherList.toArray()));
-                            Log.d("futureDataTemp", Arrays.toString(futureTempList.toArray()));
-                            Log.d("futureDataWeatherTime", futureWeatherList.get(1));
-                            Log.d("futureDataTempTime", futureTempList.get(1));
+                            //Log.d("futureData", String.valueOf(futureData));
+                            //Log.d("futureDataWeather", Arrays.toString(futureWeatherList.toArray()));
+                            //Log.d("futureDataTemp", Arrays.toString(futureTempList.toArray()));
+                            //Log.d("futureDataWeatherTime", futureWeatherList.get(1));
+                            //Log.d("futureDataTempTime", String.valueOf(futureTempList.get(1)));
+                            future1Weather[0] = futureWeatherList.get(1);
+                            future2Weather[0] = futureWeatherList.get(2);
+                            future3Weather[0] = futureWeatherList.get(3);
+                            future1Temp[0] = futureTempList.get(1);
+                            future2Temp[0] = futureTempList.get(2);
+                            future3Temp[0] = futureTempList.get(3);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -159,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Not Working");
             }
         });
+
+        //Log.d("wowArray", String.valueOf(future1Weather[0]));
+
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
 
@@ -268,21 +282,22 @@ public class MainActivity extends AppCompatActivity {
 //            mDataSet.add (calendar.get(Calendar.HOUR)+""+calendar.get(Calendar.AM_PM));
 //            i++;
 //        }
+
         Date nowHour = calendar.getTime();
         double passTime = nowHour.getTime()/1000L;
-        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather , currTemp, axx, ayy, passTime));
+        allDataArray.add (new DataModel("Now", "Restaurants", "Bars", "Active", "Indoor", currWeather, currTemp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);
         Date oneHour = calendar.getTime();
         passTime = oneHour.getTime()/1000L;
-        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", currWeather, currTemp, axx, ayy, passTime));
+        allDataArray.add (new DataModel(dateFormat.format(oneHour), "Restaurants2", "Bars2", "Active2", "Indoor2", future1Weather, future1Temp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);
         Date twoHour = calendar.getTime();
         passTime = twoHour.getTime()/1000L;
-        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", currWeather, currTemp, axx, ayy, passTime));
+        allDataArray.add ( new DataModel(dateFormat.format(twoHour), "Restaurants3", "Bars3", "Active3", "Indoor3", future2Weather, future2Temp, axx, ayy, passTime));
         calendar.add(Calendar.HOUR, 1);
         Date threeHour = calendar.getTime();
         passTime = threeHour.getTime()/1000L;
-        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", currWeather, currTemp, axx, ayy, passTime));
+        allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants4", "Bars4", "Active4", "Indoor4", future3Weather, future3Temp, axx, ayy, passTime));
 
         Log.d("passTimeHour", String.valueOf(passTime));
 

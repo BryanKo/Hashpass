@@ -57,8 +57,8 @@ public class foodCurrent extends AppCompatActivity {
         double currLng = extras.getDouble("passCurrLng");
         double currTime = extras.getDouble("passCurrTime");
         //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
-        Log.d("temperature", String.valueOf(currTemp[0]));
-        Log.d("weather", String.valueOf(currWeather[0]));
+        Log.d("temperaturezzz", String.valueOf(currTemp[0]));
+        Log.d("weatherzzz", String.valueOf(currWeather[0]));
         Log.d("currTimeFood", String.valueOf(Double.valueOf(currTime).longValue()));
 
 /*        if (currTemp[0] > 30.0 && (currWeather[0].equalsIgnoreCase("Partly Cloudy") || currWeather[0].equalsIgnoreCase("rain"))) {
@@ -86,7 +86,7 @@ public class foodCurrent extends AppCompatActivity {
                 params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
-                // params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found (will remove when open_at is implemented
+                //params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found (will remove when open_at is implemented
                 params.put("open_at", String.valueOf(Double.valueOf(currTime).longValue()));
                 params.put("limit", "50");
 
@@ -111,8 +111,8 @@ public class foodCurrent extends AppCompatActivity {
                 params.put("radius", "16000");              // 16000 meters = 10 mile radius; radius is calculated in meters
                 params.put("latitude", String.valueOf(currLat));
                 params.put("longitude", String.valueOf(currLng));
-                //params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
-                params.put("open_at", String.valueOf(Double.valueOf(currTime).longValue()));
+                params.put("open_now", "false");            // false for now b/c it'll crash if nothing is found
+                //params.put("open_at", String.valueOf(Double.valueOf(currTime).longValue()));
                 params.put("limit", "50");
 
                 Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
