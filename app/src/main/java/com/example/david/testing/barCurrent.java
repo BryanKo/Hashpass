@@ -56,10 +56,6 @@ public class barCurrent extends AppCompatActivity {
         double currLat = extras.getDouble("passCurrLat");
         double currLng = extras.getDouble("passCurrLng");
         double currTime = extras.getDouble("passCurrTime");
-        //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
-        Log.d("temperature", String.valueOf(currTemp[0]));
-        Log.d("weather", String.valueOf(currWeather[0]));
-        Log.d("currTimeFood", String.valueOf(Double.valueOf(currTime).longValue()));
 
         apiFactory = new YelpFusionApiFactory();
         try {

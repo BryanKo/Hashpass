@@ -61,10 +61,6 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     public void onBindViewHolder(final MainAdapter.ViewHolder holder, int position) {
         DataModel dataModel = allDataArray.get(position);
         holder.mTime.setText(dataModel.getTimeText());
-        //holder.mFood.setText(dataModel.getFoodText());
-        //holder.mBar.setText(dataModel.getBarText());
-        //holder.mActive.setText(dataModel.getActiveText());
-        //holder.mIndoor.setText(dataModel.getIndoorText());
         holder.mCurrWeather = dataModel.getCurrWeather();
         holder.mCurrTemp = dataModel.getCurrTemp();
         holder.mAxx = dataModel.getAxx();
@@ -86,7 +82,6 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
                 extras.putDouble("passCurrTime", holder.mPassTime);
                 intent.putExtras(extras);
                 context.startActivity(intent);
-               // Log.d("tag", "button pressed");
             }
         });
         holder.mBar.setOnClickListener(new View.OnClickListener(){
