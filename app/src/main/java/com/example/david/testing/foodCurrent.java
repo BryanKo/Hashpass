@@ -56,17 +56,6 @@ public class foodCurrent extends AppCompatActivity {
         double currLat = extras.getDouble("passCurrLat");
         double currLng = extras.getDouble("passCurrLng");
         double currTime = extras.getDouble("passCurrTime");
-        //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
-        Log.d("temperaturezzz", String.valueOf(currTemp[0]));
-        Log.d("weatherzzz", String.valueOf(currWeather[0]));
-        Log.d("currTimeFood", String.valueOf(Double.valueOf(currTime).longValue()));
-
-/*        if (currTemp[0] > 30.0 && (currWeather[0].equalsIgnoreCase("Partly Cloudy") || currWeather[0].equalsIgnoreCase("rain"))) {
-            Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": True");
-        } else {
-            Log.d("checking", String.valueOf(currTemp[0])+ ", " + String.valueOf(currWeather[0]) + ": False");
-        }*/
-
 
         apiFactory = new YelpFusionApiFactory();
         if (currTemp[0] > 30 && (currWeather[0].equalsIgnoreCase("clear") ||
@@ -126,13 +115,11 @@ public class foodCurrent extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        //Log.d("businesssize", String.valueOf(allBusinesses.size()));
 
         for (int i = businessIndex; i < businesses.size(); i++) {
             allBusinesses.add(businesses.get(i));
             businessIndex++;
         }
-        Log.d("list", String.valueOf(allBusinesses.size()));
 
         for (int i=0; i < 5; i++) {
             int low = 0;
@@ -150,7 +137,6 @@ public class foodCurrent extends AppCompatActivity {
             businesessRating.add(allBusinesses.get(randNum).getRating());
             businesessReviewCnt.add(allBusinesses.get(randNum).getReviewCount());
         }
-        //Log.d("businessImg", businessesImg.get(2));
 
         businessListView adapter = new businessListView(this, businessesImg, businessesName, businesessLoc, businesessDist);
         businessList.setAdapter(adapter);

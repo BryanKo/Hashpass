@@ -6,6 +6,11 @@
     android:gravity="center"
     >
 
+    <ImageView
+        android:layout_width="108dp"
+        android:layout_height="112dp"
+        android:src="@mipmap/ic_launcher_round" />
+
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"

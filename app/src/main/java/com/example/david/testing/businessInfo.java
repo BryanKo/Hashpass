@@ -46,8 +46,6 @@ public class businessInfo extends AppCompatActivity {
         double passBusinessRating = extras.getDouble("passBusinessRating");
         int passBusinessReviewCnt = extras.getInt("passBusinessReviewCnt");
 
-        Log.d("bundleinfo", currbusinessImg + " " + currBusinessName + " " + currBusinessLoc + " " + currBusinessPrice + " " + passBusinessRating + " " + passBusinessReviewCnt + String.valueOf(round((currBusinessDist / 1609.34), 2)).concat(" miles"));
-
         // Call pulled-API info into view
         new dlBusinessImg((ImageView) findViewById(R.id.ivBusinessProfilePic)).execute(currbusinessImg);
         cBusinessName.setText(currBusinessName);

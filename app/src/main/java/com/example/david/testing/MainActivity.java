@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //Get Calendar and Date to display NOW and the next 3 hours;
         Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("hh a");
-        Date date = new Date();
-        int timeOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+
 
         final TextView weather_print = (TextView) findViewById(R.id.textView_Weather);
 
@@ -101,53 +100,27 @@ public class MainActivity extends AppCompatActivity {
                         // Display the first 500 characters of the response string.
                         try {
                             JSONObject object = new JSONObject(response);
-                            //Log.d("json object", object.toString());
-
                             JSONObject current = object.getJSONObject("currently");
-                            //Log.d("Current Information",current.toString());
 
                             JSONObject future = object.getJSONObject("hourly");
-                            Log.d("futureInfo",future.toString());
 
                             int temp = current.getInt("temperature");
                             currTemp[0] = temp;
-                            Log.d("Temperature:", " " + temp);
 
-                            if (temp < 50) {
-                                System.out.println("1");
-                            }
-                            else if (temp > 55) {
-                                System.out.println("2");
-                            }
-                            else {
-                                System.out.println("error");
-                            }
 
                             String summary = current.getString("summary");
                             currWeather[0] = summary;
-                            //Log.d("Summary",summary);
 
-                            if (summary.equals("Clear")) {
-                                System.out.println("Temperature is currently clear");
-                            }
-                            else {
-                                System.out.println("Temperature is not clear");
-                            }
 
                             String icon = current.getString("icon");
                             currIcon[0] = icon;
-                            //Log.d("Icon",icon);
 
                             JSONArray futureData = future.getJSONArray("data");
                             for (int i = 0; i < futureData.length(); i++) {
                                 futureWeatherList.add(futureData.getJSONObject(i).getString("summary"));
                                 futureTempList.add(Double.valueOf(futureData.getJSONObject(i).getString("temperature")));
                             }
-                            //Log.d("futureData", String.valueOf(futureData));
-                            //Log.d("futureDataWeather", Arrays.toString(futureWeatherList.toArray()));
-                            //Log.d("futureDataTemp", Arrays.toString(futureTempList.toArray()));
-                            //Log.d("futureDataWeatherTime", futureWeatherList.get(1));
-                            //Log.d("futureDataTempTime", String.valueOf(futureTempList.get(1)));
+
                             future1Weather[0] = futureWeatherList.get(1);
                             future2Weather[0] = futureWeatherList.get(2);
                             future3Weather[0] = futureWeatherList.get(3);
@@ -157,8 +130,6 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Log.d("WEB_RESPONSE", response.toString());
-                        System.out.println("Successfully and is working");
                     }
                 }, new com.android.volley.Response.ErrorListener() {
             @Override
@@ -167,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Log.d("wowArray", String.valueOf(future1Weather[0]));
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
@@ -177,9 +147,6 @@ public class MainActivity extends AppCompatActivity {
             String TAG = null;
             @Override
             public void success(WeatherResponse weatherResponse, Response response) {
-                Log.d(TAG, "First Temp: " + weatherResponse.getCurrently().getTemperature());
-                Log.d(TAG, "Summary: " + weatherResponse.getCurrently().getSummary());
-                Log.d(TAG, "Hourly Sum: " + weatherResponse.getHourly().getSummary());
                 weather_print.setText(weatherResponse.getCurrently().getTemperature() + " °F.");
             }
 
@@ -221,14 +188,11 @@ public class MainActivity extends AppCompatActivity {
         // add the 3rd next hours data to the recyclerlist
         allDataArray.add ( new DataModel(dateFormat.format(threeHour), "Restaurants", "Bars", "Active", "Indoor", future3Weather, future3Temp, axx, ayy, passTime));
 
-        Log.d("passTimeHour", String.valueOf(passTime));
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new MainAdapter(allDataArray);
-        //mAdapter = new MainAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
     }

@@ -65,7 +65,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         if (user != null) {
             // Name, email address, and profile photo Url
             String email = user.getEmail();
-            Log.i("email at login page", email);
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
 

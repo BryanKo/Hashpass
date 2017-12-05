@@ -56,10 +56,7 @@ public class activeCurrent extends AppCompatActivity {
         double currLat = extras.getDouble("passCurrLat");
         double currLng = extras.getDouble("passCurrLng");
         double currTime = extras.getDouble("passCurrTime");
-        //Log.d("latlong", String.valueOf(currLat) + " " + String.valueOf(currLng));
-        Log.d("temperature", String.valueOf(currTemp[0]));
-        Log.d("weather", String.valueOf(currWeather[0]));
-        Log.d("currTimeFood", String.valueOf(Double.valueOf(currTime).longValue()));
+
 
         apiFactory = new YelpFusionApiFactory();
         if (currTemp[0] > 70 && currWeather[0].equalsIgnoreCase("clear")) {
@@ -141,13 +138,11 @@ public class activeCurrent extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        //Log.d("businesssize", String.valueOf(allBusinesses.size()));
 
         for (int i = businessIndex; i < businesses.size(); i++) {
             allBusinesses.add(businesses.get(i));
             businessIndex++;
         }
-        Log.d("list", String.valueOf(allBusinesses.size()));
 
         for (int i=0; i < 5; i++) {
             int low = 0;
