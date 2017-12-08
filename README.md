@@ -1,14 +1,15 @@
 # Welp
 
-Used branches extensively during the development process.
-The work done on one branch by a person might have been
-merged to master by another person. In addition, we used
-pair programming for some instances, and committed the changes
-under the identity of one person
+Welp is an Android application that grabs the current location of the user,
+and queries the Dark Sky API to retrieve the weather. This information
+(location and current weather) is then used to query the Yelp API, providing
+a list of items associated with different categories. The list and times 
+represented within the application is dynamic, meaning that it will show
+the list of filters appropriate for the time if it is say 5:00pm, as well
+as a list of filters and activities appropriate for the next few hours.
 
-There are 6 branches:
-- Master
+There are 10 branches, 11 including Master.
 - alee, alee2: Anthony Lee's Branches
-- bkko: Bryan Ko's Branch
-- david: David Ip's Branch
-- desharma, desharma2: Deepak Sharma's Branch.
+- bkko: Bryan Ko's Branches
+- david, david2, david3, david4: David Ip's Branches
+- desharma, desharma2: Deepak Sharma's Branches.
